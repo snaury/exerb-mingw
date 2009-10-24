@@ -496,6 +496,7 @@ rb_mark_end_proc
 rb_mark_generic_ivar
 rb_mark_generic_ivar_tbl
 rb_mark_hash
+rb_mark_set
 rb_mark_tbl
 rb_marshal_dump
 rb_marshal_load
@@ -709,6 +710,7 @@ rb_thread_fd_close
 rb_thread_fd_writable
 rb_thread_group
 rb_thread_interrupt
+rb_thread_join
 rb_thread_kill
 rb_thread_list
 rb_thread_local_aref
@@ -849,6 +851,7 @@ ruby_eval_tree
 ruby_eval_tree_begin
 ruby_exec
 ruby_finalize
+ruby_float_step
 ruby_frame
 ruby_gc_stress
 ruby_getcwd

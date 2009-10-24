@@ -1,4 +1,4 @@
-// $Id: gui.cpp,v 1.14 2007/02/25 16:44:51 yuya Exp $
+// $Id: gui.cpp,v 1.15 2008/12/19 12:17:50 arton Exp $
 
 #include <ruby.h>
 #include <windowsx.h>
@@ -15,7 +15,7 @@ static void on_fail(VALUE errinfo);
 
 static void exerb_replace_io_methods(const VALUE io);
 static VALUE rb_exerbio_write(VALUE self, VALUE str);
-static VALUE rb_exerbio_retrun_nil(int argc, VALUE *argv, VALUE self);
+static VALUE rb_exerbio_return_nil(int argc, VALUE *argv, VALUE self);
 
 static LRESULT CALLBACK dialog_proc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam);
 
@@ -37,10 +37,10 @@ on_init(VALUE io_stdin, VALUE io_stdout, VALUE io_stderr)
 	::exerb_replace_io_methods(io_stdout);
 	::exerb_replace_io_methods(io_stderr);
 
-	::rb_define_global_function("gets", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_global_function("readline", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_global_function("getc", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_global_function("readlines", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
+	::rb_define_global_function("gets", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_global_function("readline", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_global_function("getc", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_global_function("readlines", (RUBY_PROC)rb_exerbio_return_nil, -1);
 }
 
 static void
@@ -54,47 +54,47 @@ on_fail(VALUE errinfo)
 static void
 exerb_replace_io_methods(const VALUE io)
 {
-	::rb_define_singleton_method(io, "reopen", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "each", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "each_line", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "each_byte", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "syswrite", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "sysread", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "fileno", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "to_i", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "to_io", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "fsync", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "sync", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "sync=", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "lineno", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "lineno=", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "readlines", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "read", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
+	::rb_define_singleton_method(io, "reopen", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "each", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "each_line", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "each_byte", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "syswrite", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "sysread", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "fileno", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "to_i", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "to_io", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "fsync", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "sync", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "sync=", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "lineno", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "lineno=", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "readlines", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "read", (RUBY_PROC)rb_exerbio_return_nil, -1);
 	::rb_define_singleton_method(io, "write", (RUBY_PROC)rb_exerbio_write, 1);
-	::rb_define_singleton_method(io, "gets", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "readline", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "getc", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "readchar", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "ungetc", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "flush", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "tell", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "seek", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "rewind", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "pos", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "pos=", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "eof", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "eof?", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "close", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "closed?", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "close_read", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "close_write", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "isatty", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "tty?", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "binmode", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "sysseek", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "ioctl", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "fcntl", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
-	::rb_define_singleton_method(io, "pid", (RUBY_PROC)rb_exerbio_retrun_nil, -1);
+	::rb_define_singleton_method(io, "gets", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "readline", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "getc", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "readchar", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "ungetc", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "flush", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "tell", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "seek", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "rewind", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "pos", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "pos=", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "eof", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "eof?", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "close", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "closed?", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "close_read", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "close_write", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "isatty", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "tty?", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "binmode", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "sysseek", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "ioctl", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "fcntl", (RUBY_PROC)rb_exerbio_return_nil, -1);
+	::rb_define_singleton_method(io, "pid", (RUBY_PROC)rb_exerbio_return_nil, -1);
 }
 
 static VALUE
@@ -107,7 +107,7 @@ rb_exerbio_write(VALUE self, VALUE str)
 }
 
 static VALUE
-rb_exerbio_retrun_nil(int argc, VALUE *argv, VALUE self)
+rb_exerbio_return_nil(int argc, VALUE *argv, VALUE self)
 {
 	return Qnil;
 }
