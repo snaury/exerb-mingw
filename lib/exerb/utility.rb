@@ -10,6 +10,14 @@ end # Exerb
 
 module Exerb::Utility
 
+  def self.align_value(value, align)
+    if value % align == 0
+      return value
+    else
+      return value + (align - (value % align))
+    end
+  end
+
   def self.alignment(bin, align)
     if bin.size % align == 0
       return bin

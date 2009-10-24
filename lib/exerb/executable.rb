@@ -38,13 +38,15 @@ class Exerb::Executable
     raise(Exerb::ExerbError, "the last section must be resource section") unless rsh.name == '.rsrc'
 
     packed_rsrc  = @rsrc.pack(rsh.virtual_address)
-    aligned_rsrc = Exerb::Utility.alignment4k(packed_rsrc)
+    aligned_rsrc = Exerb::Utility.alignment(packed_rsrc, oh.file_alignment)
+    old_resource_size = Exerb::Utility.align_value(rsh.virtual_size, oh.section_alignment)
+    new_resource_size = Exerb::Utility.align_value(packed_rsrc.size, oh.section_alignment)
 
     @core[rsh.pointer_to_raw_data, rsh.size_of_raw_data] = aligned_rsrc
 
     fh.time_date_stamp                 = Time.now.to_i
-    oh.size_of_initialized_data        = oh.size_of_initialized_data - rsh.size_of_raw_data + aligned_rsrc.size
-    oh.size_of_image                   = oh.size_of_image            - rsh.size_of_raw_data + aligned_rsrc.size
+    oh.size_of_initialized_data        = oh.size_of_initialized_data - old_resource_size + new_resource_size
+    oh.size_of_image                   = oh.size_of_image            - old_resource_size + new_resource_size
     oh.resource_directory_virtual_size = packed_rsrc.size
     rsh.virtual_size                   = packed_rsrc.size
     rsh.size_of_raw_data               = aligned_rsrc.size
