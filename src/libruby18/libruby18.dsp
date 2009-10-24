@@ -41,7 +41,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "obj\release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MD /w /W0 /GX /O1 /I "src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "NT" /D "_WIN32" /D "RUBY_EXPORT" /YX /FD /c
+# ADD CPP /nologo /MD /w /W0 /GX /O1 /I "src" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "NT" /D "_WIN32" /D "RUBY_EXPORT" /D "USE_WINSOCK2" /YX /FD /c
 # ADD BASE RSC /l 0x411 /d "NDEBUG"
 # ADD RSC /l 0x411 /d "NDEBUG"
 BSC32=bscmake.exe
