@@ -6,6 +6,7 @@ Init_Binding
 Init_Comparable
 Init_Dir
 Init_Enumerable
+Init_Enumerator
 Init_Exception
 Init_File
 Init_GC
@@ -49,6 +50,7 @@ dln_find_file
 dln_load
 do_aspawn
 do_spawn
+dtoa
 eaccess
 encrypt
 endhostent
@@ -59,6 +61,7 @@ erf
 erfc
 fcntl
 flock
+freedtoa
 getegid
 geteuid
 getgid
@@ -148,6 +151,8 @@ rb_big_pow
 rb_big_rand
 rb_big_rshift
 rb_big_xor
+rb_block_call
+rb_block_dup
 rb_block_given_p
 rb_block_proc
 rb_bug
@@ -158,6 +163,7 @@ rb_cClass
 rb_cCont
 rb_cData
 rb_cDir
+rb_cEnumerator
 rb_cFalseClass
 rb_cFile
 rb_cFixnum
@@ -194,6 +200,7 @@ rb_check_inheritable
 rb_check_safe_obj
 rb_check_safe_str
 rb_check_string_type
+rb_check_to_integer
 rb_check_type
 rb_class2name
 rb_class_boot
@@ -229,6 +236,7 @@ rb_const_list
 rb_const_set
 rb_convert_type
 rb_copy_generic_ivar
+rb_copy_node_scope
 rb_cstr2inum
 rb_cstr_to_dbl
 rb_cstr_to_inum
@@ -293,6 +301,7 @@ rb_eScriptError
 rb_eSecurityError
 rb_eSignal
 rb_eStandardError
+rb_eStopIteration
 rb_eSyntaxError
 rb_eSysStackError
 rb_eSystemCallError
@@ -303,6 +312,7 @@ rb_eZeroDivError
 rb_each
 rb_enable_super
 rb_ensure
+rb_enumeratorize
 rb_env_path_tainted
 rb_eof_error
 rb_eql
@@ -318,6 +328,7 @@ rb_exc_new2
 rb_exc_new3
 rb_exc_raise
 rb_exec_end_proc
+rb_exec_recursive
 rb_exit
 rb_extend_object
 rb_f_abort
@@ -344,6 +355,7 @@ rb_fix2str
 rb_float_new
 rb_fopen
 rb_frame_last_func
+rb_frame_this_func
 rb_free_generic_ivar
 rb_frozen_class_p
 rb_fs
@@ -372,6 +384,8 @@ rb_gc_stack_start
 rb_gc_start
 rb_gc_unregister_address
 rb_generic_ivar_table
+rb_genrand_int32
+rb_genrand_real
 rb_get_kcode
 rb_getc
 rb_gets
@@ -391,6 +405,7 @@ rb_hash_delete
 rb_hash_delete_if
 rb_hash_foreach
 rb_hash_freeze
+rb_hash_lookup
 rb_hash_new
 rb_hash_reject_bang
 rb_hash_select
@@ -489,6 +504,7 @@ rb_memcmp
 rb_memerror
 rb_memsearch
 rb_method_boundp
+rb_method_dup
 rb_method_node
 rb_mod_ancestors
 rb_mod_class_variables
@@ -500,6 +516,7 @@ rb_mod_include_p
 rb_mod_included_modules
 rb_mod_init_copy
 rb_mod_module_eval
+rb_mod_module_exec
 rb_mod_name
 rb_mod_remove_const
 rb_mod_remove_cvar
@@ -534,14 +551,17 @@ rb_obj_id_obsolete
 rb_obj_infect
 rb_obj_init_copy
 rb_obj_instance_eval
+rb_obj_instance_exec
 rb_obj_instance_variables
 rb_obj_is_instance_of
 rb_obj_is_kind_of
+rb_obj_method
 rb_obj_remove_instance_variable
 rb_obj_respond_to
 rb_obj_singleton_methods
 rb_obj_taint
 rb_obj_tainted
+rb_obj_tap
 rb_obj_type
 rb_obj_untaint
 rb_origenviron
@@ -556,6 +576,7 @@ rb_path_end
 rb_path_last_separator
 rb_path_next
 rb_path_skip_prefix
+rb_proc_call
 rb_proc_exec
 rb_proc_new
 rb_proc_times
@@ -642,10 +663,12 @@ rb_str_new4
 rb_str_new5
 rb_str_plus
 rb_str_resize
+rb_str_set_len
 rb_str_setter
 rb_str_split
 rb_str_substr
 rb_str_times
+rb_str_tmp_new
 rb_str_to_dbl
 rb_str_to_inum
 rb_str_to_str
@@ -676,7 +699,6 @@ rb_tainted_str_new2
 rb_thread_alive_p
 rb_thread_alone
 rb_thread_atfork
-rb_thread_cancel_timer
 rb_thread_create
 rb_thread_critical
 rb_thread_current
@@ -698,7 +720,6 @@ rb_thread_signal_exit
 rb_thread_signal_raise
 rb_thread_sleep
 rb_thread_sleep_forever
-rb_thread_status
 rb_thread_stop
 rb_thread_tick
 rb_thread_trap_eval
@@ -760,6 +781,7 @@ rb_w32_isatty
 rb_w32_leave_critical
 rb_w32_listen
 rb_w32_main_context
+rb_w32_map_errno
 rb_w32_mkdir
 rb_w32_opendir
 rb_w32_osid
@@ -797,27 +819,33 @@ rb_write_error2
 rb_yield
 rb_yield_splat
 rb_yield_values
+re_mbc_startpos
 re_mbctab
 re_set_syntax
+round
 ruby__end__seen
 ruby_add_suffix
 ruby_brace_expand
 ruby_brace_glob
 ruby_class
 ruby_cleanup
+ruby_copyright
 ruby_cref
 ruby_current_node
 ruby_debug
 ruby_default_signal
+ruby_description
 ruby_digitmap
 ruby_dln_librefs
 ruby_dyna_vars
+ruby_each_words
 ruby_errinfo
 ruby_eval_tree
 ruby_eval_tree_begin
 ruby_exec
 ruby_finalize
 ruby_frame
+ruby_gc_stress
 ruby_getcwd
 ruby_glob
 ruby_ignorecase

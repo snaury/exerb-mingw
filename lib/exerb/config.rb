@@ -1,6 +1,6 @@
 
 #==============================================================================#
-# $Id: config.rb,v 1.22 2007/06/17 14:47:11 arton Exp $
+# $Id: config.rb,v 1.23 2008/06/13 23:54:45 arton Exp $
 #==============================================================================#
 
 require 'rbconfig'
@@ -20,14 +20,14 @@ module Exerb
 
   # Name definitions of a core.
   CORE_NAME = {
-    'cui'    => 'ruby186c.exc',
-    'cuid'   => 'ruby186cd.exc',
-    'cuirt'  => 'ruby186crt.exc',
-    'cuirtd' => 'ruby186crtd.exc',
-    'gui'    => 'ruby186g.exc',
-    'guid'   => 'ruby186gd.exc',
-    'guirt'  => 'ruby186grt.exc',
-    'guirtd' => 'ruby186grtd.exc',
+    'cui'    => 'ruby187c.exc',
+    'cuid'   => 'ruby187cd.exc',
+    'cuirt'  => 'ruby187crt.exc',
+    'cuirtd' => 'ruby187crtd.exc',
+    'gui'    => 'ruby187g.exc',
+    'guid'   => 'ruby187gd.exc',
+    'guirt'  => 'ruby187grt.exc',
+    'guirtd' => 'ruby187grtd.exc',
     'cui19'  => 'ruby190c.exc',
     'gui19'  => 'ruby190g.exc',
     'cui20'  => 'ruby200c.exc',
@@ -37,7 +37,7 @@ module Exerb
   # Descriptions of a core.
   CORE_DESC = {
     # FIXME: Add descriptions
-    # 'ruby186c.exc' => '...',
+    # 'ruby187c.exc' => '...',
   }
 
 end # Exerb

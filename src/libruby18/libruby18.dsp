@@ -174,6 +174,10 @@ SOURCE=.\src\enum.c
 # End Source File
 # Begin Source File
 
+SOURCE=.\src\enumerator.c
+# End Source File
+# Begin Source File
+
 SOURCE=.\src\env.h
 # End Source File
 # Begin Source File

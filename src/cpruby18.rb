@@ -1,5 +1,5 @@
 #!/usr/local/bin/ruby -Ks
-# $Id: cpruby18.rb,v 1.1 2007/06/17 14:06:32 arton Exp $
+# $Id: cpruby18.rb,v 1.2 2008/06/13 21:07:26 arton Exp $
 =begin
   -libruby18内のソースファイルを更新
 =end
@@ -7,7 +7,7 @@
 require 'fileutils'
 
 if ARGV.length == 0
-  STDERR.puts 'usage: ruby cpruby18.rb ruby-1.8.6-src-directory'
+  STDERR.puts 'usage: ruby cpruby18.rb ruby-1.8.7-src-directory'
   exit 1
 end
 

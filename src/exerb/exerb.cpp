@@ -1,4 +1,4 @@
-// $Id: exerb.cpp,v 1.195 2007/02/26 10:32:13 yuya Exp $
+// $Id: exerb.cpp,v 1.196 2008/06/13 23:52:29 arton Exp $
 
 #include <ruby.h>
 #include <crtdbg.h>
@@ -251,11 +251,11 @@ exerb_require(VALUE fname)
 	VALUE feature = Qnil, realname = Qnil;
 
 	if ( ::exerb_find_file_pre_loaded(fname, &feature, &loaded_library_entry) ) {
-		::rb_provide(RSTRING_PTR(feature));
 		::exerb_call_initialize_function(loaded_library_entry->handle, loaded_library_entry->filepath);
 		delete[] loaded_library_entry->filepath;
 		loaded_library_entry->filepath = NULL;
 		loaded_library_entry->handle   = NULL;
+		::rb_provide(RSTRING_PTR(feature));
 		return Qtrue;
 	} else if ( ::exerb_find_file_inside(fname, &id, &feature, &realname) ) {
 		if ( ::rb_provided(RSTRING_PTR(feature)) ) return Qfalse;
@@ -264,18 +264,18 @@ exerb_require(VALUE fname)
 
 		switch ( file_entry->type_of_file ) {
 		case FILE_ENTRY_HEADER_TYPE_RUBY_SCRIPT:
-			::rb_provide(RSTRING_PTR(feature));
 			::exerb_load_ruby_script(file_entry);
+			::rb_provide(RSTRING_PTR(feature));
 			return Qtrue;
 #ifdef RUBY19
 		case FILE_ENTRY_HEADER_TYPE_COMPILED_SCRIPT:
-			::rb_provide(RSTRING_PTR(feature));
 			::exerb_load_compiled_script(file_entry);
+			::rb_provide(RSTRING_PTR(feature));
 			return Qtrue;
 #endif
 		case FILE_ENTRY_HEADER_TYPE_EXTENSION_LIBRARY:
-			::rb_provide(RSTRING_PTR(feature));
 			::exerb_load_extension_library(file_entry);
+			::rb_provide(RSTRING_PTR(feature));
 			return Qtrue;
 		}
 	} else if ( ::exerb_find_file_outside(fname, &feature, &realname) ) {
@@ -284,12 +284,12 @@ exerb_require(VALUE fname)
 		const char *ext = ::strrchr(RSTRING_PTR(feature), '.');
 
 		if ( ::stricmp(ext, ".rb") == 0 ) {
-			::rb_provide(RSTRING_PTR(feature));
 			::exerb_load_ruby_script(RSTRING_PTR(realname));
+			::rb_provide(RSTRING_PTR(feature));
 			return Qtrue;
 		} else if ( ::stricmp(ext, ".so") == 0 ) {
-			::rb_provide(RSTRING_PTR(feature));
 			::exerb_load_extension_library(RSTRING_PTR(realname));
+			::rb_provide(RSTRING_PTR(feature));
 			return Qtrue;
 		}
 	}

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# $Id: mkdef.rb,v 1.4 2008/03/08 05:31:03 arton Exp $
+# $Id: mkdef.rb,v 1.6 2008/06/13 23:54:45 arton Exp $
 require 'fileutils'
 
-EXERB_NAME = 'exerb44'
+EXERB_NAME = 'exerb45'
 EXERB_SYMBOLS = [
                  '',
                  'rb_mExerbRuntime',
@@ -28,8 +28,8 @@ class Deffile
     if /^\s*;\s*$/ =~ line
     elsif /^EXPORTS\s*$/ =~ line
       internal_puts line
-    elsif /^\s*([A-Za-z0-9_]+)\s*$/ =~ line
-      internal_puts line, "#{$1} = #{EXERB_NAME}.#{$1}"
+    elsif /^\s*([A-Za-z0-9_]+)(\s+DATA)?\s*$/ =~ line
+      internal_puts $1, "#{$1} = #{EXERB_NAME}.#{$1}"
     else
       internal_puts line
     end

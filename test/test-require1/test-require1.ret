@@ -1,27 +1,27 @@
-["test-require1.rb", []]
-["require1.rb", ["require1.rb"]]
+["test-require1.rb", ["enumerator.so"]]
+["require1.rb", ["enumerator.so"]]
 true
 false
-["test-require1.rb", ["require1.rb"]]
-["require2.rb", ["require1.rb", "require2.rb"]]
+["test-require1.rb", ["enumerator.so", "require1.rb"]]
+["require2.rb", ["enumerator.so", "require1.rb"]]
 true
 false
-["test-require1.rb", ["require1.rb", "require2.rb"]]
-["require3.rb", ["require1.rb", "require2.rb", "require3.rb"]]
+["test-require1.rb", ["enumerator.so", "require1.rb", "require2.rb"]]
+["require3.rb", ["enumerator.so", "require1.rb", "require2.rb"]]
 true
 false
-["test-require1.rb", ["require1.rb", "require2.rb", "require3.rb"]]
-["require4.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb"]]
+["test-require1.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb"]]
+["require4.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb"]]
 true
 false
-["test-require1.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb"]]
-["require5.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb"]]
-true
-false
-false
-["test-require1.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb"]]
-["require6.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb", "require6.rb"]]
+["test-require1.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb", "require4.rb"]]
+["require5.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb", "require4.rb"]]
 true
 false
 false
-["test-require1.rb", ["require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb", "require6.rb"]]
+["test-require1.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb"]]
+["require6.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb"]]
+true
+false
+false
+["test-require1.rb", ["enumerator.so", "require1.rb", "require2.rb", "require3.rb", "require4.rb", "require5.rb", "require6.rb"]]

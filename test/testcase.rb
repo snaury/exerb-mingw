@@ -1,6 +1,6 @@
 
 #==============================================================================#
-# $Id: testcase.rb,v 1.22 2007/06/17 14:47:11 arton Exp $
+# $Id: testcase.rb,v 1.23 2008/06/13 23:53:34 arton Exp $
 #==============================================================================#
 
 require 'test/unit/testcase'
@@ -25,7 +25,7 @@ module ExerbTestCase
   end
 
   def create_exe(name, exename = name)
-    corefile   = '../data/exerb/ruby186c.exc'
+    corefile   = '../data/exerb/ruby187c.exc'
     recipe     = Exerb::Recipe.load("#{name}/#{exename}.exy")
     archive    = recipe.create_archive()
     executable = Exerb::Executable.read(corefile)

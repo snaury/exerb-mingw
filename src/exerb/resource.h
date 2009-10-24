@@ -1,4 +1,4 @@
-// $Id: resource.h,v 1.5 2008/03/08 05:31:03 arton Exp $
+// $Id: resource.h,v 1.6 2008/06/13 21:07:26 arton Exp $
 
 #define RT_EXERB                        100
 #define ID_EXERB                        1
@@ -14,5 +14,5 @@
 #define IDC_STATIC -1
 #endif
 
-#define EXERB_RES_EXERB_VERSION1 4,4,0,0
-#define EXERB_RES_EXERB_VERSION2 "4.4.0"
+#define EXERB_RES_EXERB_VERSION1 4,5,0,0
+#define EXERB_RES_EXERB_VERSION2 "4.5.0"
