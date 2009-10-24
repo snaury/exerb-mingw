@@ -650,6 +650,7 @@ rb_str_concat
 rb_str_dump
 rb_str_dup
 rb_str_dup_frozen
+rb_str_format
 rb_str_freeze
 rb_str_hash
 rb_str_inspect

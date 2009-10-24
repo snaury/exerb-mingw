@@ -1,6 +1,6 @@
 =begin
 
-$Id: ChangeLog.ja.rd,v 1.144 2008/06/13 23:54:45 arton Exp $
+$Id: ChangeLog.ja.rd,v 1.145 2008/06/22 14:56:38 arton Exp $
 
 = Exerb - ChangeLog
 
@@ -9,6 +9,11 @@ $Id: ChangeLog.ja.rd,v 1.144 2008/06/13 23:54:45 arton Exp $
 * 開発版コアをRuby 1.9.0(Rev.11888)に変更
 * コンパイル済みスクリプトの実行に対応
 * プリコンパイルに対応
+
+== 4.6.0
+
+* 安定版コアをRuby 1.8.7-p22(2008-6-20)に変更
+* Winsock2を利用するように変更
 
 == 4.5.0
 
