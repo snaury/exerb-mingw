@@ -1,0 +1,9 @@
+# $Id: test-preload.exy,v 1.1 2009/09/07 18:17:37 arton Exp $
+
+general:
+  startup: test-preload.rb
+  core: cui
+  kcode: none
+
+file:
+  test-preload.rb:

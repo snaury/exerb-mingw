@@ -1,8 +1,13 @@
 =begin
 
-$Id: ChangeLog.ja.rd,v 1.148 2009/04/21 15:37:42 arton Exp $
+$Id: ChangeLog.ja.rd,v 1.149 2009/09/08 12:25:47 arton Exp $
 
 = Exerb - ChangeLog
+
+== 5.0.0
+
+* 安定版コアをRuby 1.8.7-p174に変更
+* preloadライブラリをロードしに行かないように修正
 
 == 4.9.0
 

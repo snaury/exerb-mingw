@@ -38,6 +38,7 @@ Init_syserr
 Init_var_tables
 Init_version
 NtInitialize
+_CrtDbgReportW
 acosh
 asinh
 atanh

@@ -1,4 +1,4 @@
-// $Id: exerb.cpp,v 1.197 2008/07/01 15:39:53 arton Exp $
+// $Id: exerb.cpp,v 1.198 2009/09/08 12:25:47 arton Exp $
 
 #include <ruby.h>
 #include <crtdbg.h>
@@ -63,6 +63,7 @@ static void exerb_setup_resource_library();
 static void exerb_execute();
 static void exerb_cleanup();
 extern "C" VALUE exerb_require(VALUE fname);
+static bool exerb_find_ruby_pre_loaded(const VALUE filename);
 static bool exerb_find_file_pre_loaded(const VALUE filename, VALUE *feature, LOADED_LIBRARY_ENTRY **loaded_library_entry);
 static bool exerb_find_file_inside(const VALUE filename, WORD *id, VALUE *feature, VALUE *realname);
 static bool exerb_find_file_outside(const VALUE filename, VALUE *feature, VALUE *realname);
@@ -250,6 +251,10 @@ exerb_require(VALUE fname)
 	WORD id = 0;
 	VALUE feature = Qnil, realname = Qnil;
 
+	if ( ::exerb_find_ruby_pre_loaded(fname) ) {
+		return Qfalse;
+	}
+
 	if ( ::exerb_find_file_pre_loaded(fname, &feature, &loaded_library_entry) ) {
 		::rb_provide(RSTRING_PTR(feature));
 		::exerb_call_initialize_function(loaded_library_entry->handle, loaded_library_entry->filepath);
@@ -297,6 +302,26 @@ exerb_require(VALUE fname)
 	::rb_raise(rb_eLoadError, "No such file to load -- %s", RSTRING_PTR(fname));
 
 	return Qfalse;
+}
+
+static char* EXTTBL[] = { "rb", "so", "dll" };
+
+static bool
+exerb_find_ruby_pre_loaded(const VALUE filename)
+{
+	const char* fname = RSTRING_PTR(filename);
+	if (strchr(fname, '.')) {
+		return ::rb_provided(fname) != Qfalse;
+	} else {
+		char* p = (char*)_alloca(strlen(fname) + 8);
+		for (int i = 0; i < sizeof(EXTTBL)/sizeof(EXTTBL[0]); i++) {
+			sprintf(p, "%s.%s", fname, EXTTBL[i]);
+			if (::rb_provided(p)) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 static bool
