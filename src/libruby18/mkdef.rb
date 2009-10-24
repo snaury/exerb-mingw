@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
-# $Id: mkdef.rb,v 1.3 2007/10/01 11:18:47 arton Exp $
+# $Id: mkdef.rb,v 1.4 2008/03/08 05:31:03 arton Exp $
 require 'fileutils'
 
-EXERB_NAME = 'exerb43'
+EXERB_NAME = 'exerb44'
 EXERB_SYMBOLS = [
                  '',
                  'rb_mExerbRuntime',
