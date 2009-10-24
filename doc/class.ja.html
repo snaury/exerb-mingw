@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: class.ja.html,v 1.7 2006/05/31 16:39:29 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - クラスリファレンス</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>クラスリファレンス</em></div>
+  <div class="body">
+   <h1>クラスリファレンス</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li>
+       <a href="#02">ExerbRuntimeモジュール</a>
+       <ol>
+        <li><a href="#0201">filename()</a></li>
+        <li><a href="#0202">filepath()</a></li>
+        <li><a href="#0203">load_cursor(id)</a></li>
+        <li><a href="#0204">load_icon(id)</a></li>
+        <li><a href="#0205">load_string(id)</a></li>
+        <li><a href="#0206">open(filename)</a></li>
+       </ol>
+      </li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>本リファレンスでは、Exerb実行時モジュールについて説明します。</p>
+     <p>
+      Exerb実行時モジュールとは、実行ファイルに変換されたRubyスクリプトを実行する際に利用できるモジュールです。
+      また、Exerb実行時モジュールの定義有無により、rubyコマンド上で実行されているのか、実行ファイルとして実行されているのか判断することができます。
+     </p>
+    </div>
+    <h2><a name="02">2.</a>ExerbRuntimeモジュール</h2>
+    <div class="h2">
+     <h3><a name="0201">1.</a>filename()</h3>
+     <div class="h3">
+      <p>実行ファイルのファイル名を取得します。</p>
+      <p>
+       変換時のファイル名ではなく、実行時のファイル名を返します。
+       また、ディレクトリパスを含みません。
+      </p>
+     </div>
+     <h3><a name="0202">2.</a>filepath()</h3>
+     <div class="h3">
+      <p>実行ファイルのファイルパスを取得します。</p>
+      <p>
+       変換時のファイル名ではなく、実行時のファイル名を返します。
+       また、ディレクトリパスを含みます。
+      </p>
+     </div>
+     <h3><a name="0203">3.</a>load_cursor(id)</h3>
+     <div class="h3">
+      <p>実行ファイルに格納されたリソースライブラリからidに一致するリソースIDを持つカーソルリソースを取得します。</p>
+      <p>
+       idには文字列、または整数を指定します。
+       リソースライブラリが複数登録されている場合は、すべてのリソースライブラリに対して検索が行われ、最初に見つかったリソースを返します。
+       リソースライブラリはレシピファイルで指定することができますが、順序は保存されないため、検索の順序は不定です。
+       リソースライブラリの指定方法は、<a href="recipe.ja.html">レシピリファレンス</a>を参照してください。
+      </p>
+     </div>
+     <h3><a name="0204">4.</a>load_icon(id)</h3>
+     <div class="h3">
+      <p>実行ファイルに格納されたリソースライブラリからidに一致するリソースIDを持つアイコンリソースを取得します。</p>
+      <p>idの指定方法、検索方法などはload_cursorメソッドと同様です。</p>
+     </div>
+     <h3><a name="0205">5.</a>load_string(id)</h3>
+     <div class="h3">
+      <p>実行ファイルに格納されたリソースライブラリからidに一致するリソースIDを持つ文字列リソースを取得します。</p>
+      <p>idの指定方法、検索方法などはload_cursorメソッドと同様です。</p>
+     </div>
+     <h3><a name="0206">6.</a>open(filename)</h3>
+     <div class="h3">
+      <p>実行ファイルに格納されたfilenameに一致するファイル名を持つデータファイルをStringIOオブジェクトとして取得します。</p>
+      <p>
+       filenameには内部ファイル名を文字列で指定します。
+       <em>openメソッドを使用するにはstringio.soを実行ファイルに含む必要があります。</em>
+       データファイルの指定方法は、<a href="recipe.ja.html">レシピリファレンス</a>を参照してください。
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

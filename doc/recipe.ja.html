@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: recipe.ja.html,v 1.17 2006/06/19 01:03:10 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - レシピリファレンス</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>レシピリファレンス</em></div>
+  <div class="body">
+   <h1>レシピリファレンス</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li>
+       <a href="#02">YAMLフォーマット</a>
+       <ol>
+        <li><a href="#0201">配列</a></li>
+        <li><a href="#0202">ハッシュ</a></li>
+        <li><a href="#0203">組み合わせ</a></li>
+       </ol>
+      </li>
+      <li>
+       <a href="#03">レシピファイルフォーマット</a>
+       <ol>
+        <li><a href="#0301">generalブロック</a></li>
+        <li><a href="#0302">pathブロック</a></li>
+        <li><a href="#0303">resourceブロック</a></li>
+        <li><a href="#0304">fileブロック</a></li>
+       </ol>
+      </li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>
+      レシピファイルは、実行ファイルの生成に必要な各種情報を記述するテキストファイルです。
+      各種情報は、YAML（YAML Ain't Markup Language）フォーマットで記述し、文字コードにはUTF-8を使用します。
+     </p>
+     <p>もっとも単純なレシピファイルの例は、下記の通りです。</p>
+     <p class="recipe">
+      general:<br />
+      &nbsp;&nbsp;startup: hello.rb<br />
+      file:<br />
+      &nbsp;&nbsp;hello.rb:<br />
+     </p>
+    </div>
+    <h2><a name="02">2.</a>YAMLフォーマット</h2>
+    <div class="h2">
+     <p>YAMLフォーマットについて、簡単に解説します。</p>
+     <p>
+      YAMLでは、いくつかの記号とインデントを用いて、データ構造を表現します。
+      データ構造には大きく分けて、配列とハッシュという2種類があります。
+     </p>
+     <p>下記に例を記述すると共に、「#=&gt;」という記号に続き、Ruby上におけるデータを併記します。</p>
+     <h3><a name="0201">2.1.</a>配列</h3>
+     <div class="h3">
+      <p>
+       配列は、下記の形式で記述します。
+      </p>
+      <p class="recipe">
+       -&nbsp;値
+      </p>
+      <p>下記のように記述することで、配列を表現します。</p>
+      <p class="recipe">
+       -&nbsp;Array<br />
+       -&nbsp;String<br />
+       -&nbsp;123<br />
+       #=&gt;&nbsp;["Array",&nbsp;"String",&nbsp;123]<br />
+      </p>
+      <p>Ruby上ではArrayオブジェクトとして扱われます。</p>
+     </div>
+     <h3><a name="0202">2.2.</a>ハッシュ</h3>
+     <div class="h3">
+      <p>ハッシュは、下記の形式で記述します。</p>
+      <p class="recipe">
+       キー:&nbsp;値<br />
+      </p>
+      <p>下記のように記述することで、ハッシュを表現します。</p>
+      <p class="recipe">
+       Type:&nbsp;Hash<br />
+       String:&nbsp;ABC<br />
+       Number:&nbsp;123<br />
+       #=&gt;&nbsp;{"Type"&nbsp;=&gt;&nbsp;"Hash",&nbsp;"String"&nbsp;=&gt;&nbsp;"ABC",&nbsp;"Number"&nbsp;=&gt;&nbsp;123}<br />
+      </p>
+      <p>
+       Ruby上ではHashオブジェクトとして扱われます。
+       そのため、キーの順序は保存されません。
+      </p>
+     </div>
+     <h3><a name="0203">2.3.</a>組み合わせ</h3>
+     <div class="h3">
+      <p>
+       配列とハッシュは、それぞれ組み合わせることができます。
+       インデントすることによって、親子関係を示します。
+       インデントにはスペース文字、タブ文字が使用できますが、2個のスペース文字を用いることを推奨します。
+      </p>
+      <p>配列同士の組み合わせ例は、下記の通りです。</p>
+      <p class="recipe">
+       -<br />
+       &nbsp;&nbsp;-&nbsp;1x1<br />
+       &nbsp;&nbsp;-&nbsp;1x2<br />
+       -<br />
+       &nbsp;&nbsp;-&nbsp;2x1<br />
+       &nbsp;&nbsp;-&nbsp;2x2<br />
+       #=&gt;&nbsp;[["1x1",&nbsp;"1x2"],&nbsp;["2x1",&nbsp;"2x2"]]<br />
+      </p>
+      <p>ハッシュ同士の組み合わせ例は、下記の通りです。</p>
+      <p class="recipe">
+       Key1:<br />
+       &nbsp;&nbsp;Type:&nbsp;String<br />
+       &nbsp;&nbsp;Value:&nbsp;ABC<br />
+       Key2:<br />
+       &nbsp;&nbsp;Type:&nbsp;Number<br />
+       &nbsp;&nbsp;Value:&nbsp;123<br />
+       #=&gt;&nbsp;{"Key1"&nbsp;=&gt;&nbsp;{"Type"&nbsp;=&gt;&nbsp;"String",&nbsp;"Value"&nbsp;=&gt;&nbsp;"ABC"},<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Key2"&nbsp;=&gt;&nbsp;{"Type"&nbsp;=&gt;&nbsp;"Number",&nbsp;"Value"&nbsp;=&gt;&nbsp;123}}<br />
+      </p>
+      <p>配列とハッシュの組み合わせ例は、下記の通りです。</p>
+      <p class="recipe">
+       String:<br />
+       &nbsp;&nbsp;-&nbsp;A<br />
+       &nbsp;&nbsp;-&nbsp;B<br />
+       &nbsp;&nbsp;-&nbsp;C<br />
+       Number:<br />
+       &nbsp;&nbsp;-&nbsp;1<br />
+       &nbsp;&nbsp;-&nbsp;2<br />
+       &nbsp;&nbsp;-&nbsp;3<br />
+       #=&gt;&nbsp;{"String"&nbsp;=&gt;&nbsp;["A",&nbsp;"B",&nbsp;"C"],&nbsp;"Number"&nbsp;=&gt;&nbsp;[1,&nbsp;2,&nbsp;3]}<br />
+      </p>
+     </div>
+    </div>
+    <h2><a name="03">3.</a>レシピファイルフォーマット</h2>
+    <div class="h2">
+     <p>
+      レシピファイルは下記のブロック（ハッシュ構造）から構成されています。
+      各ブロックの記述順序は任意ですが、下記の順序で記述することを推奨します。
+     </p>
+     <ol>
+      <li>generalブロック<em>（必須）</em></li>
+      <li>pathブロック</li>
+      <li>resourceブロック</li>
+      <li>fileブロック<em>（必須）</em></li>
+     </ol>
+     <p>なお、<em>日本語を含む場合はUTF-8でエンコードしてください。</em></p>
+     <h3><a name="0301">3.1.</a>generalブロック</h3>
+     <div class="h3">
+      <p>
+       生成する実行ファイルについての基本的な情報を指定します。
+       <em>このブロックは必須です。</em>
+      </p>
+      <p class="recipe">
+       general:<br />
+       &nbsp;&nbsp;startup:&nbsp;foo.rb<br />
+       &nbsp;&nbsp;output:&nbsp;bar.exe<br />
+       &nbsp;&nbsp;core:&nbsp;cui<br />
+       &nbsp;&nbsp;kcode:&nbsp;sjis<br />
+      </p>
+      <p>
+       startupキーは、実行ファイル起動時に、最初に実行するRubyスクリプトのファイル名を指定します。
+       <em>このキーは必須です。</em>
+      </p>
+      <p>
+       outputキーは、生成する実行ファイルの出力ファイル名を指定します。
+       省略された場合、レシピファイルのファイル名が使用されます。
+       レシピファイルの拡張子が「exy」であれば拡張子を「exe」に置換したファイル名、そうでなければ「.exe」を付加したファイル名を使用します。
+       コマンドオプションで出力ファイル名が指定された場合、コマンドオプションによる指定が優先されます。
+      </p>
+      <p>
+       coreキーは、実行ファイルの生成に使用するExerbコアを指定します。
+       定義名、またはファイル名で指定します。
+       コマンドオプションでコアが指定された場合、コマンドオプションによる指定が優先されます。
+      </p>
+      <p>
+       kcodeキーは、Rubyスクリプトの文字コードを指定します。
+       rubyコマンドの-Kオプションに相当します。
+       コマンドオプションで文字コードが指定された場合、コマンドオプションによる指定が優先されます。
+       文字コードは、下記のいずれかを指定してください。
+      </p>
+      <table>
+       <tr><th>指定値</th><th>意味</th></tr>
+       <tr><td>none</td><td>指定なし（デフォルト）</td></tr>
+       <tr><td>euc</td><td>EUC</td></tr>
+       <tr><td>sjis</td><td>Shift-JIS</td></tr>
+       <tr><td>utf8</td><td>UTF-8</td></tr>
+      </table>
+     </div>
+     <h3><a name="0302">3.2.</a>pathブロック</h3>
+     <div class="h3">
+      <p>
+       Rubyスクリプト、拡張ライブラリ等の検索パスを指定します。
+       絶対パス、またはレシピファイルが存在するディレクトリを基準とした相対パスで記述します。
+      </p>
+      <p class="recipe">
+       path:<br />
+       &nbsp;&nbsp;-&nbsp;..\lib\so<br />
+       &nbsp;&nbsp;-&nbsp;c:\ruby\lib<br />
+       &nbsp;&nbsp;-&nbsp;c:\ruby<br />
+      </p>
+     </div>
+     <h3><a name="0303">3.3.</a>resourceブロック</h3>
+     <div class="h3">
+      <p>生成する実行ファイルのリソース情報を指定します。</p>
+      <p>
+       このブロックは、実行ファイルのアイコンリソースを指定するiconブロックと、
+       バージョン情報リソースを指定するversionブロックで構成されています。
+      </p>
+      <h4><a name="030301">3.3.1.</a>iconブロック</h4>
+      <div class="h4">
+       <p>
+        アイコンリソースを指定します。
+        このブロックが省略された場合、コアに含まれているデフォルトのアイコンが使用されます。
+        複数のサイズ、色数のアイコンを指定することができますが、メインアイコン以外のアイコンリソースを指定することはできません。
+       </p>
+       <p class="recipe">
+        resource:<br />
+        &nbsp;&nbsp;icon:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;-<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width&nbsp;:&nbsp;16<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;height:&nbsp;16<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color&nbsp;:&nbsp;4<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;file&nbsp;&nbsp;:&nbsp;file.ico<br />
+       </p>
+       <p>
+        widthキーは、アイコンの横方向のピクセル数（幅）を指定します。
+       </p>
+       <p>
+        heightキーは、アイコンの縦方向のピクセル数（高さ）を指定します。
+       </p>
+       <p>
+        colorキーは、アイコンの色深度のビット数を指定します。例えば、16色であれば4ビットです。
+       </p>
+       <p>
+        fileキーは、上記の3つのキーで指定したアイコンが含まれているファイルを指定します。
+        複数のサイズ、色数が含まれているアイコンファイルを指定することができますが、アイコンリソースとして使用されるのは、上記3つのキーで指定したアイコンのみです。
+       </p>
+      </div>
+      <h4><a name="030302">3.3.2.</a>versionブロック</h4>
+      <div class="h4">
+       <p>
+        バージョン情報リソースを指定します。
+        このブロックが省略された場合、コアに含まれているデフォルトのバージョン情報が使用されます。
+       </p>
+       <p class="recipe">
+        resource:<br />
+        &nbsp;&nbsp;version:<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;file_version_number&nbsp;&nbsp;&nbsp;:&nbsp;1.2.3.4<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;product_version_number:&nbsp;5.6.7.8<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;comments&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;コメント<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;company_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;会社名<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;legal_copyright&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;著作権情報<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;legal_trademarks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;商標情報<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;file_version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ファイルバージョン（文字列）<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;product_version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;製品バージョン（文字列）<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;product_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;製品名<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;file_description&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;ファイルの説明<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;internal_name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;内部名<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;original_filename&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;正式ファイル名<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;private_build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;プライベートビルド情報<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;special_build&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;スペシャルビルド情報<br />
+       </p>
+       <p>
+        file_version_numberキー、product_version_numberキーには、それぞれファイルバージョン、製品バージョンをドットで区切られた4つの数値で指定します。
+        それぞれの数値には、0～65535の範囲を使用することができます。
+       </p>
+       <p>
+        その他のキーは、文字列でそれぞれの内容を指定します。
+        日本語文字列を使用する場合は、レシピファイルをUTF-8でエンコードしてください。
+       </p>
+      </div>
+     </div>
+     <h3><a name="0304">3.4.</a>fileブロック</h3>
+     <div class="h3">
+      <p>
+       生成する実行ファイルに格納するファイルを指定します。
+       <em>このブロックは必須です。</em>
+      </p>
+      <p class="recipe">
+       file:<br />
+       &nbsp;&nbsp;foo.so:<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;file:&nbsp;foo/foo.so<br />
+       &nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;extension-library<br />
+      </p>
+      <p>
+       キー名には、ファイル名を指定します。
+       このファイル名は内部ファイル名と呼ばれ、requireメソッドによるファイルの読み込みで使用されます。
+       内部ファイル名は、パスの区切り文字も含めて単一の文字列として比較されるため、<em>「require &quot;../foo/bar.so&quot;」などは正しく解釈されない</em>ので注意してください。
+       前述のrequireメソッド呼び出しでは「../foo/bar.so」という内部ファイル名が検索されます。
+      </p>
+      <p>
+       fileキーには、実際のファイル名を指定します。
+       内部ファイル名と同一の場合、または検索パスより検索可能な場合は、省略することができます。
+      </p>
+      <p>
+       typeキーには、ファイルの種別を指定します。
+       省略された場合は、ファイルの拡張子に基づいて種別が決定されます。
+      </p>
+      <table>
+       <tr><th>拡張子</th><th>種別</th><th>説明</th></tr>
+       <tr><td>.rb</td><td>script<br />（Rubyスクリプト）</td><td>Rubyスクリプトが記述されたテキストファイル。requireにて読み込むことができます。</td></tr>
+       <tr><td>.so</td><td>extension-library<br />（拡張ライブラリ）</td><td>C言語などで作成された拡張ライブラリ（ダイナミックリンクライブラリ）。requireにて読み込むことができます。</td></tr>
+       <tr><td>.dll</td><td>dynamic-library<br />（ダイナミックリンクライブラリ）</td><td>拡張ライブラリが使用するダイナミックリンクライブラリ。拡張ライブラリによって要求された場合に、自動的に読み込まれます。明示的に読み込むことはできません。</td></tr>
+       <tr><td>.res</td><td>resource-library<br />（リソースライブラリ）</td><td>リソースのみが格納されたダイナミックリンクライブラリ。Exerb実行時モジュールを使用してリソースデータを読み込むことができます。</td></tr>
+       <tr><td>.dat</td><td>data<br />（データ）</td><td>バイナリ、画像、データベースなどのデータファイル。Exerb実行時モジュールを使用して読み込むことができます。書き込みはできません。</td></tr>
+      </table>
+      <p>実行時モジュールについては『<a href="class.ja.html">クラスリファレンス</a>』を参照してください。</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: README.ja.html,v 1.24 2006/07/04 17:13:55 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - Exerbへようこそ</title>
+  <link rel="stylesheet" type="text/css" href="doc/style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><em>ようこそ</em></div>
+  <div class="body">
+   <h1>Exerbへようこそ</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li><a href="#02">特徴</a></li>
+      <li>
+       <a href="#03">利点と欠点</a>
+       <ol>
+        <li><a href="#0301">利点</a></li>
+        <li><a href="#0302">欠点</a></li>
+       </ol>
+      </li>
+      <li><a href="#04">インストール</a></li>
+      <li><a href="#05">使用方法</a></li>
+      <li><a href="#06">ドキュメント</a></li>
+      <li><a href="#07">参考Webサイト</a></li>
+      <li><a href="#08">その他</a></li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>Exerbは、RubyスクリプトをWindows実行形式ファイル（以下、実行ファイル）に変換するためのソフトウェアです。</p>
+     <p>
+      Exerbは、同梱の「Exerbコア」とユーザーが準備した「レシピファイル」を入力することで、実行ファイルを生成します。
+      ExerbコアにはRubyインタプリタが含まれており、生成された実行ファイルを起動すると、このRubyインタプリタでRubyスクリプトが実行されます。
+      レシピファイルには実行ファイル内に格納するRubyスクリプトや拡張ライブラリの情報、各種設定を記述します。
+     </p>
+    </div>
+    <h2><a name="02">2.</a>特徴</h2>
+    <div class="h2">
+     <p>Exerbの主な特徴は下記の通りです。</p>
+     <ul>
+      <li>複数のRubyスクリプトファイル、拡張ライブラリファイルを単一の実行ファイルに変換することができます。</li>
+      <li>生成された実行ファイルは、Rubyインタプリタが存在しない環境でも実行することができます。</li>
+      <li>実行ファイルへの変換に、コンパイラ等の外部ソフトウェアを必要としません。</li>
+     </ul>
+    </div>
+    <h2><a name="03">3.</a>利点と欠点</h2>
+    <div class="h2">
+     <p>Exerbを用いてRubyスクリプトを実行ファイルに変換することによる利点と欠点は、下記の通りです。</p>
+     <h3><a name="0301">3.1.</a>利点</h3>
+     <div class="h3">
+      <ul>
+       <li>Ruby言語の持つ高い生産性を活用して、手軽にWindowsソフトウェアを作成することができます。</li>
+       <li>一般的なコンパイラ、リンカで生成された実行ファイルと同様に扱うことができます。</li>
+       <li>複数のファイルを単一のファイルにまとめることができるため、ファイル管理・配布が容易です。</li>
+       <li>Rubyインタプリタを内蔵しているため、配布が容易です。</li>
+       <li>異なるバージョンのRubyインタプリタで動作するRubyスクリプトを、一つの環境に混在させることができます。</li>
+       <li>RubyスクリプトをRubyインタプリタに関連付けて起動する場合と異なり、標準入出力がそのまま利用できます。</li>
+      </ul>
+     </div>
+     <h3><a name="0302">3.2.</a>欠点</h3>
+     <div class="h3">
+      <ul>
+       <li>Rubyスクリプト、拡張ライブラリが正常に動作しない場合があります。</li>
+       <li>Rubyインタプリタを内蔵しているため、実行ファイルの最低サイズが約500kbと大きめです。（ランタイムDLLを利用しない場合）</li>
+       <li>実行ファイル内にそのままソースコードを格納するため、リバースエンジニアリングが容易です。</li>
+       <li>MSVCRT32版Rubyに存在しない機能（fork等）が利用できません。</li>
+      </ul>
+      <p>ただし、実行ファイルサイズについては、ランタイムライブラリを使用するExerbコアを用いることで改善できます。</p>
+     </div>
+    </div>
+    <h2><a name="04">4.</a>インストール</h2>
+    <div class="h2">
+     <p>
+      インストールするには、同梱のsetup.rbを実行してください。
+      インストール先によっては、管理者権限が必要です。
+     </p>
+     <p class="type">
+      $ ruby setup.rb<br />
+     </p>
+    </div>
+    <h2><a name="05">5.</a>使用方法</h2>
+    <div class="h2">
+     <p>exerbコマンドの使用方法は下記の通りです。</p>
+     <p class="type">$ exerb [オプション] {スクリプトファイル|レシピファイル}</p>
+     <p>
+      簡単な使用例については<a href="doc/tutorial.ja.html">チュートリアル</a>を、同梱のサンプルについては<a href="doc/example.ja.html">使用例</a>を参照してください。
+      また、<a href="doc/command.ja.html">コマンドリファレンス</a>、<a href="doc/recipe.ja.html">レシピリファレンス</a>もそれぞれ参照してください。
+     </p>
+    </div>
+    <h2><a name="06">6.</a>ドキュメント</h2>
+    <div class="h2">
+     <dl>
+      <dt><a href="doc/tutorial.ja.html">チュートリアル</a></dt>
+      <dd>Exerbの基本的な使用法について。</dd>
+      <dt><a href="doc/example.ja.html">使用例</a></dt>
+      <dd>Exerbに同梱されている使用例について。</dd>
+      <dt><a href="doc/command.ja.html">コマンドリファレンス</a></dt>
+      <dd>exerbコマンドをはじめとするコマンドについて。</dd>
+      <dt><a href="doc/recipe.ja.html">レシピリファレンス</a></dt>
+      <dd>レシピファイルの記述法などについて。</dd>
+      <dt><a href="doc/core.ja.html">コアリファレンス</a></dt>
+      <dd>コアファイルの種類について。</dd>
+      <dt><a href="doc/class.ja.html">クラスリファレンス</a></dt>
+      <dd>Exerb実行時モジュールについて。</dd>
+      <dt><a href="doc/faq.ja.html">よくある質問と回答</a></dt>
+      <dd>よくある質問と、それに対する回答集。</dd>
+      <dt><a href="doc/license.ja.html">適用されるライセンス、著作権、免責について</a></dt>
+      <dd>Exerbのライセンス、Exerbによって生成した実行ファイルのライセンスなどについて。生成した実行ファイルを配布する前に、必ずお読みください。</dd>
+      <dt><a href="doc/misc.ja.html">その他の情報</a></dt>
+      <dd>Exerbに関するその他の情報。CVSリポジトリ、メーリングリスト、動作環境など。</dd>
+     </dl>
+    </div>
+    <h2><a name="07">7.</a>参考Webサイト</h2>
+    <div class="h2">
+     <dl>
+      <dt><a href="http://exerb.sourceforge.jp/">Exerb Project</a></dt>
+      <dd>Exerb Projectの本家Webサイト。Exerbの最新リリース等を入手できます。</dd>
+      <dt><a href="http://www.ruby-lang.org/">オブジェクト指向スクリプト言語Ruby</a></dt>
+      <dd>Rubyの本家Webサイト。Rubyのソースコード、リファレンスマニュアル、各種ライブラリ等を入手できます。</dd>
+     </dl>
+    </div>
+    <h2><a name="08">8.</a>その他</h2>
+    <div class="h2">
+     <p>
+      Exerbは加藤勇也によって開発されたソフトウェアです。
+      Exerbに関するご意見、バグ報告等は<a href="mailto:yuyakato@gmail.com">yuyakato@gmail.com</a>または<a href="http://sourceforge.jp/projects/exerb/lists/">メーリングリスト</a>までお送りください。
+     </p>
+     <p>
+      Rubyを開発されたまつもとゆきひろ氏と、開発に関わったすべての方々に深く感謝します。
+      素晴らしい言語、開発環境をありがとう！
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

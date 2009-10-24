@@ -1,0 +1,391 @@
+# Microsoft Developer Studio Generated Dependency File, included by libruby18.mak
+
+.\src\missing\isinf.c : \
+	".\src\config.h"\
+	
+
+.\src\win32\win32.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\dln.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\win32\dir.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\array.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\bignum.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\class.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\compar.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\dir.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\dir.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\dln.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\dln.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\missing\file.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\enum.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\error.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\eval_exerb.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\dln.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\file.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\dln.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\missing\file.h"\
+	".\src\ruby.h"\
+	".\src\rubyio.h"\
+	".\src\rubysig.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\gc.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\re.h"\
+	".\src\regex.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\hash.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\inits.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\io.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubyio.h"\
+	".\src\rubysig.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\marshal.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubyio.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\math.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\numeric.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\object.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\pack.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\parse.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\lex.c"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\regex.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\prec.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\process.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\random.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\range.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\re.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\re.h"\
+	".\src\regex.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\regex.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\regex.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\ruby.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\dln.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\signal.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\rubysig.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\sprintf.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\st.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\string.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\re.h"\
+	".\src\regex.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\struct.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\time.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\util.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\missing\file.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\variable.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\env.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\node.h"\
+	".\src\ruby.h"\
+	".\src\st.h"\
+	".\src\win32\win32.h"\
+	
+
+.\src\version.c : \
+	".\src\config.h"\
+	".\src\defines.h"\
+	".\src\intern.h"\
+	".\src\missing.h"\
+	".\src\ruby.h"\
+	".\src\win32\win32.h"\
+	

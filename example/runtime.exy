@@ -1,0 +1,40 @@
+
+#==============================================================================#
+# $Id: runtime.exy,v 1.6 2006/01/06 06:09:32 yuya Exp $
+#==============================================================================#
+
+general:
+  startup: runtime.rb
+  core: cui
+
+resource:
+  icon:
+    - width : 16
+      height: 16
+      color : 4
+      file  : runtime.ico
+    - width : 32
+      height: 32
+      color : 4
+      file  : runtime.ico
+  version:
+    file_version_number   : 1.2.3.4
+    product_version_number: 5.6.7.8
+    comments              : Comments Field
+    company_name          : Company Name Field
+    legal_copyright       : Legal Copyright Field
+    legal_trademarks      : Legal Trademarks Field
+    file_version          : File Version Field
+    product_version       : Product Version Field
+    product_name          : Product Name Field
+    file_description      : File Description Field
+    internal_name         : Internal Name Field
+    original_filename     : Original Filename Field
+    private_build         : Private Build Field
+    special_build         : Special Build Field
+
+file:
+  runtime.rb:
+
+#==============================================================================#
+#==============================================================================#

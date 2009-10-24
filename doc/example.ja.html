@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: example.ja.html,v 1.10 2006/07/06 01:38:33 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - 使用例</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>使用例</em></div>
+  <div class="body">
+   <h1>使用例</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li><a href="#02">cat_n</a></li>
+      <li><a href="#03">exception</a></li>
+      <li><a href="#04">msgbox</a></li>
+      <li><a href="#05">runtime</a></li>
+      <li><a href="#06">vruby</a></li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>exampleディレクトリには、5つの使用例があります。</p>
+     <p>
+      cat_nを実行ファイルに変換する例は下記の通りです。
+      その他の使用例についても、同様に変換することができます。
+     </p>
+     <p class="type">
+      $ cd example<br />
+      $ exerb cat_n.exy<br />
+     </p>
+    </div>
+    <h2><a name="02">2.</a>cat_n</h2>
+    <div class="h2">
+     <p>
+      標準入力から文字列を読み込み、行番号を付加して標準出力に出力します。
+      UNIX系OSの「cat -n」と同様の動作します。
+      CUI版Exerbコアを使用しています。
+     </p>
+    </div>
+    <h2><a name="03">3.</a>exception</h2>
+    <div class="h2">
+     <p>
+      プログラム開始直後に例外を発生させて、例外ダイアログボックスを表示します。
+      GUI版Exerbコアを使用しています。
+     </p>
+    </div>
+    <h2><a name="04">4.</a>msgbox</h2>
+    <div class="h2">
+     <p>
+      Win32APIを使って、メッセージボックスを表示します。
+      GUI版Exerbコアと、Win32API拡張ライブラリを使用しています。
+     </p>
+    </div>
+    <h2><a name="05">5.</a>runtime</h2>
+    <div class="h2">
+     <p>
+      Exerb実行時モジュールを使用した、実行時情報の取得例です。
+      Rubyインタプリタのバージョン、Rubyインタプリタのリリース日付、実行ファイルのフルパス、実行ファイルのファイル名を標準出力に出力します。
+      CUI版Exerbコアを使用しています。
+     </p>
+     <p>
+      また、レシピファイルによってアイコンリソース、バージョン情報リソースを指定する例でもあります。
+      詳しくはレシピファイルを参照してください。
+     </p>
+    </div>
+    <h2><a name="06">6.</a>vruby</h2>
+    <div class="h2">
+     <p>
+      2つのボタンがあるフォームを表示します。
+      「exception」ボタンを押下すると例外が発生し、「exit」ボタンを押下するとプログラムを終了します。
+      GUI版Exerbコアと、VisualuRubyライブラリを利用しています。
+     </p>
+     <p>
+      VisualuRubyは、NISHIKAWA Yasuhiro氏によるWin32 GUIライブラリです。
+      VisualuRubyに関する情報は<a href="http://www.osk.3web.ne.jp/~nyasu/software/vrproject.html">VisualuRuby計画（仮称）</a>から入手することができます。
+      なお、「Visualu」は「Visual」の誤字ではなく、意図的なものです。
+     </p>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

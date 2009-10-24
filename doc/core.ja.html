@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: core.ja.html,v 1.4 2006/06/09 00:25:47 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - コアリファレンス</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>コアリファレンス</em></div>
+  <div class="body">
+   <h1>コアリファレンス</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li><a href="#02">命名規則</a></li>
+      <li><a href="#03">定義済みの名称</a></li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>
+      コアは実行ファイルの生成に使用されるスタブコードで、Rubyインタプリタを含んでいます。
+      Exerbはコアとアーカイブ（Rubyスクリプトなどの集合）を結合し、実行ファイルを生成します。
+     </p>
+    </div>
+    <h2><a name="02">2.</a>命名規則</h2>
+    <div class="h2">
+     <p>
+      配布されているパッケージには、いくつかのコアファイルが含まれています。
+      コアファイルの命名規則は下記の通りです。
+     </p>
+     <p class="type">ruby{VER}{c|g}[rt][d].exc</p>
+     <table>
+      <tr><th>記号</th><th>説明</th></tr>
+      <tr><td>ruby</td><td>接頭子です。常に付加されます。</td></tr>
+      <tr><td>VER</td><td>コアに含まれているRubyインタプリタのバージョンを示します。「180」であれば、Ruby 1.8.0です。</td></tr>
+      <tr><td>c</td><td>CUI版を示します。起動時にコンソール（コマンドプロンプト）が表示され、標準入出力が使用できます。また、例外発生時には標準エラー出力に例外情報が出力されます。</td></tr>
+      <tr><td>g</td><td>GUI版を示します。起動時にコンソールが表示されず、標準入出力も使用できません。例外発生時にはダイアログボックスに例外情報が表示されます。</td></tr>
+      <tr><td>rt</td><td>ランタイムライブラリ版を示します。実行にはExerbランタイムライブラリ（exerb??.dll）が必要ですが、実行ファイルのサイズを小さくできます。複数の実行ファイルを同時に配布する場合に便利です。「rt」が付加されていない場合はスタンドアローン版です。</td></tr>
+      <tr><td>d</td><td>デバッグ版を示します。デバッグコンパイルされており、Exerbのデバッグに使用されます。通常、配布アーカイブには含まれません。「d」が付加されていない場合は、リリース版です。</td></tr>
+      <tr><td>.exc</td><td>Exerbのコアファイルを示す拡張子です。常に付加されます。</td></tr>
+     </table>
+    </div>
+    <h2><a name="03">3.</a>定義済みの名称</h2>
+    <div class="h2">
+     <p>
+      ファイル名によるコア指定の煩雑さを軽減するため、配布アーカイブに含まれているコアには名称が定義されています。
+      この定義済みの名称は、exerbコマンドの-cオプション、レシピファイルのgeneral/coreキーで使用することができます。
+     </p>
+     <p>
+      定義されている名称は下記の通りです。
+      なお、ファイル名の「???」には安定版Rubyインタプリタのバージョンが入ります。
+     </p>
+     <table>
+      <tr><th>定義名</th><th>ファイル名</th><th>内容</th></tr>
+      <tr><td>cui</td><td>ruby???c.exc</td><td>CUI版 / スタンドアローン版</td></tr>
+      <tr><td>cuirt</td><td>ruby???crt.exc</td><td>CUI版 / ランタイムライブラリ版</td></tr>
+      <tr><td>gui</td><td>ruby???g.exc</td><td>GUI版 / スタンドアローン版</td></tr>
+      <tr><td>guirt</td><td>ruby???grt.exc</td><td>GUI版 / ランタイムライブラリ版</td></tr>
+     </table>
+     <p>下記コマンドで、実際に定義されている名称の一覧を確認することができます。</p>
+     <p class="type">$ exerb -i</p>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

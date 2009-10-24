@@ -1,0 +1,196 @@
+#! c:/home/ruby/bin/ruby.exe
+
+#==============================================================================#
+# $Id: exerb,v 1.34 2007/06/17 14:47:11 arton Exp $
+#==============================================================================#
+
+require 'getoptlong'
+require 'exerb/version'
+require 'exerb/config'
+require 'exerb/recipe'
+require 'exerb/executable'
+
+#==============================================================================#
+
+module ExerbCommand
+
+  OPTIONS = [
+    ['--corename', '-c', GetoptLong::REQUIRED_ARGUMENT, 'specifies exerb-core by defined name.'],
+    ['--corefile', '-C', GetoptLong::REQUIRED_ARGUMENT, 'specifies exerb-core by path.'],
+    ['--outfile',  '-o', GetoptLong::REQUIRED_ARGUMENT, 'specifies output file.'],
+    ['--kcode',    '-k', GetoptLong::REQUIRED_ARGUMENT, 'specifies character code-set. (none/euc/sjis/utf8)'],
+    ['--archive',  '-a', GetoptLong::NO_ARGUMENT,       'create an archive only.'],
+    ['--verbose',  '-v', GetoptLong::NO_ARGUMENT,       'enable verbose mode.'],
+#   ['--debug',    '-g', GetoptLong::NO_ARGUMENT,       'enable debug mode.'],
+    ['--execute',  '-e', GetoptLong::NO_ARGUMENT,       'execute an executable file after creation.'],
+    ['--config',   '-i', GetoptLong::NO_ARGUMENT,       'display config information.'],
+    ['--version',  '-V', GetoptLong::NO_ARGUMENT,       'display version number.'],
+    ['--help',     '-h', GetoptLong::NO_ARGUMENT,       'display this information.'],
+  ]
+
+  def self.main(argv)
+    options = self.parse_options(argv)
+
+    self.print_config_and_exit  if options[:config]
+    self.print_version_and_exit if options[:version]
+    self.print_usage_and_exit   if options[:help] || argv.size < 1
+
+    arg_fname  = argv.shift
+    arg_kcode  = options[:kcode]
+    arg_core   = options[:corefile]
+    arg_core ||= Exerb::Utility.find_core_by_name(options[:corename], true) if options[:corename]
+
+    recipe =
+      if /\.rb$/i =~ arg_fname
+        Exerb::Recipe.new({
+          'general' => {
+            'startup' => File.basename(arg_fname),
+            'output'  => File.expand_path(arg_fname).sub(/(\.rb)?$/i, '.exe'),
+            'core'    => arg_core,  # use arg value, or default value
+            'kcode'   => arg_kcode, # use arg value, or default value
+          },
+          'file' => {
+            File.basename(arg_fname) => {
+              'file' => File.expand_path(arg_fname),
+              'type' => 'script',
+            },
+          },
+        })
+      else
+        Exerb::Recipe.load(arg_fname)
+      end
+
+    # FIXME: arg priority
+    archive      = recipe.create_archive(arg_kcode)
+    core_file    = recipe.core_filepath(arg_core)
+    output_file  = recipe.output_filepath(options[:outfile])
+    archive_file = recipe.archive_filepath(options[:outfile])
+
+    raise(Exerb::ExerbError, "a core file isn't specified") if core_file.nil?
+    raise(Exerb::ExerbError, "no such file -- #{core_file}") unless File.exist?(core_file)
+    raise(Exerb::ExerbError, "no such directory -- #{File.dirname(output_file)}") unless File.directory?(File.dirname(output_file))
+
+    if options[:verbose]
+      puts("Recipe File  : #{arg_fname}")
+      puts("Core File    : #{core_file}")
+      puts("Archive File : #{archive_file}") if options[:archive]
+      puts("Output File  : #{output_file}")
+    end
+
+    if options[:archive]
+      archive.write_to_file(archive_file)
+    else
+      executable = Exerb::Executable.read(core_file)
+      executable.rsrc.add_archive(archive)
+      recipe.update_resource(executable.rsrc)
+      executable.write(output_file)
+
+      exec(File.expand_path(output_file)) if options[:execute]
+    end
+
+    exit(0)
+  rescue Exerb::ExerbError => e
+    STDERR.puts("exerb: #{e.message}")
+    exit(1)
+  end
+
+  def self.parse_options(argv)
+    options = {}
+    config  = OPTIONS.collect { |ary| ary[0, 3] }
+
+    parser = GetoptLong.new
+    parser.set_options(*config)
+    parser.each_option { |name, argument|
+      options[name.sub(/^--/, '').intern] = argument
+    }
+
+    options[:archive]  = !!options[:archive]
+    options[:verbose]  = !!options[:verbose]
+#   options[:debug]    = !!options[:debug]
+    options[:execute]  = !!options[:execute]
+    options[:config]   = !!options[:config]
+    options[:version]  = !!options[:version]
+    options[:help]     = !!options[:help]
+
+    return options
+  rescue GetoptLong::InvalidOption
+    exit(1)
+  end
+
+  def self.print_config_and_exit
+    puts "Exerb #{Exerb::VERSION}"
+
+    puts
+    puts "Search directories of Ruby library:"
+    $LOAD_PATH.each { |path| printf("  %s\n", File.expand_path(path)) }
+
+    puts
+    puts "Search directories of Exerb core:"
+    Exerb::CORE_PATH.each { |path| printf("  %s\n", File.expand_path(path)) }
+
+    name_max = Exerb::CORE_NAME.keys.collect { |name| name.size }.max
+
+    puts
+    puts "Defined names of Exerb core:"
+    Exerb::CORE_NAME.keys.sort.each { |name|
+      filename = Exerb::Utility.find_core_by_name(name)
+      message  = (filename.nil? ? " (not found in search directories)" : "")
+      printf("  %s => %s%s\n", name.ljust(name_max), Exerb::CORE_NAME[name], message)
+    }
+
+    exit(1)
+  end
+
+  def self.print_version_and_exit
+    puts "Exerb #{Exerb::VERSION}"
+    exit(1)
+  end
+
+  def self.print_usage_and_exit
+    puts("Exerb #{Exerb::VERSION}")
+
+    puts
+    puts("Usage: exerb [options] {script-file|recipe-file}")
+
+    puts
+    puts("Options:")
+    OPTIONS.each { |long, short, arg, comment|
+      printf("  %s  %-10s  %s\n", short, long, comment)
+    }
+
+    exit(1)
+  end
+
+=begin
+  def self.make_filename(filename, extension)
+    return filename.sub(/(\.exr$|$)/i, '.' + extension)
+  end
+
+  def self.select_core_file(options, recipe)
+    core_file   = options[:corefile]
+    core_file ||= Exerb::Utility.find_core_by_name(options[:corename], true) if options[:corename]
+    core_file ||= recipe.corefile
+    core_file ||= Exerb::Utility.find_core_by_name('cui')
+    core_file ||= Exerb::Utility.find_core_by_name('gui')
+    core_file ||= raise(Exerb::ExerbError, "a core file isn't specified in the recipe file and command line options.")
+
+    return core_file
+  end
+
+  def self.select_out_file(options, recipe, recipe_file)
+    out_file   = options[:outfile]
+    out_file ||= recipe.outfile
+    out_file ||= self.make_filename(recipe_file, 'exe')
+
+    return out_file
+  end
+=end
+
+end
+
+#==============================================================================#
+
+ExerbCommand.main(ARGV)
+
+#==============================================================================#
+#==============================================================================#

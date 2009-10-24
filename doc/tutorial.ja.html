@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: tutorial.ja.html,v 1.6 2006/05/23 01:19:16 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - チュートリアル</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>チュートリアル</em></div>
+  <div class="body">
+   <h1>チュートリアル</h1>
+   <div class="h1">
+    <p>Exerbを使用して、Rubyスクリプトを実行ファイルに変換する簡単な例を紹介します。</p>
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li>
+       <a href="#01">1ステップ生成</a>
+       <ol>
+        <li><a href="#0101">Rubyスクリプトの準備</a></li>
+        <li><a href="#0102">Rubyスクリプトの動作確認</a></li>
+        <li><a href="#0103">実行ファイルの生成</a></li>
+        <li><a href="#0104">実行ファイルの動作確認</a></li>
+       </ol>
+      </li>
+      <li>
+       <a href="#02">レシピファイルによる生成</a>
+       <ol>
+        <li><a href="#0201">Rubyスクリプトの準備</a></li>
+        <li><a href="#0202">Rubyスクリプトの動作確認</a></li>
+        <li><a href="#0203">レシピファイルの準備</a></li>
+        <li><a href="#0204">実行ファイルの生成</a></li>
+        <li><a href="#0205">実行ファイルの動作確認</a></li>
+       </ol>
+      </li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>1ステップ生成</h2>
+    <div class="h2">
+     <p>
+     バージョン4.0.0より、新しく追加された機能です。単一のRubyスクリプトファイルであれば、レシピファイルを作成せずに1ステップで実行ファイルに変換することができます。</p>
+     <h3><a name="0101">1.</a>Rubyスクリプトの準備</h3>
+     <div class="h3">
+      <p>
+       実行ファイルに変換したいRubyスクリプトを準備します。
+       ここでは「Hello!」というメッセージを出力するhello.rbを例として用います。
+       内容は下記の通りです。
+      </p>
+      <p class="type">
+       puts "Hello!"<br />
+      </p>
+     </div>
+     <h3><a name="0102">2.</a>Rubyスクリプトの動作確認</h3>
+     <div class="h3">
+      <p>
+       Exerbで実行ファイルに変換する前に、MSVCRT32版Rubyで実行できることを確認します。
+       エラーが発生した場合は、エラーメッセージを参照し、Rubyスクリプトを修正してください。
+      </p>
+      <p class="type">
+       $ ruby hello.rb<br />
+       Hello!<br />
+      </p>
+      <p>
+       <em>動作確認は必ず行ってください。</em>
+       また、可能な限り、Exerbコアに含まれるRubyインタプリタと同一バージョンのRubyを使用してください。
+      </p>
+     </div>
+     <h3><a name="0103">3.</a>実行ファイルの生成</h3>
+     <div class="h3">
+      <p>
+       exerbコマンドを実行して、実行ファイルに変換します。
+       正常に変換できれば、何も画面に出力されずに終了します。
+      </p>
+      <p class="type">
+       $ exerb hello.rb<br />
+      </p>
+     </div>
+     <h3><a name="0104">4.</a>実行ファイルの動作確認</h3>
+     <div class="h3">
+      <p>
+       生成された実行ファイルを実行します。
+       「Hello!」と表示されれば成功です。
+      </p>
+      <p class="type">
+       $ hello.exe<br />
+       Hello!<br />
+      </p>
+     </div>
+    </div>   
+    <h2><a name="02">2.</a>レシピファイルによる生成</h2>
+    <div class="h2">
+     <p>
+     通常使用する実行ファイルへの変換方法です。</p>
+     <h3><a name="0201">1.</a>Rubyスクリプトの準備</h3>
+     <div class="h3">
+      <p>
+       1ステップ生成の場合と同様に、実行ファイルに変換したいRubyスクリプトを準備します。
+       ここでは「Hello!」というメッセージを出力するhelloメソッドが定義されたhello_def.rbと、helloメソッドを呼び出すhello_call.rbを例として使用します。
+       hello_def.rbの内容は下記の通りです。
+      </p>
+      <p class="type">
+       def hello()<br />
+       &nbsp;&nbsp;puts "Hello!"<br />
+       end<br />
+      </p>
+      <p>hello_call.rbの内容は下記の通りです。</p>
+      <p class="type">
+       require "hello_def"<br />
+       hello()<br />
+      </p>
+     </div>
+     <h3><a name="0202">2.</a>Rubyスクリプトの動作確認</h3>
+     <div class="h3">
+      <p>
+       Exerbで実行ファイルに変換する前に、MSVCRT32版Rubyで実行できることを確認します。
+       エラーが発生した場合は、エラーメッセージを参照し、Rubyスクリプトを修正してください。
+      </p>
+      <p class="type">
+       $ ruby hello_call.rb<br />
+       Hello!<br />
+      </p>
+      <p>
+       <em>動作確認は必ず行ってください。</em>
+       また、可能な限り、Exerbコアに含まれるRubyインタプリタと同一バージョンのRubyを使用してください。
+      </p>
+     </div>
+     <h3><a name="0203">3.</a>レシピファイルの準備</h3>
+     <div class="h3">
+      <p>
+       レシピファイルを準備します。
+       ここではシンプルなレシピファイルであるhello_call.exyを例として用います。
+       内容は下記の通りです。
+      </p>
+      <p class="recipe">
+       general:<br />
+       &nbsp;&nbsp;startup: hello_call.rb<br />
+       file:<br />
+       &nbsp;&nbsp;hello_call.rb:<br />
+       &nbsp;&nbsp;hello_def.rb:<br />
+      </p>
+      <p>
+       なお、レシピファイルは自動生成することもできます。
+       下記のいずれかを実行すると、指定されたスクリプトが実行されたあと、終了時にレシピファイルが生成されます。
+      </p>
+      <p class="type">
+       $ ruby -r exerb/mkexy hello_call.rb<br />
+       Hello!<br />
+      </p>
+      <p class="type">
+       $ mkexy hello_call.rb<br />
+       Hello!<br />
+      </p>
+     </div>
+     <h3><a name="0204">4.</a>実行ファイルの生成</h3>
+     <div class="h3">
+      <p>
+       exerbコマンドを実行して、実行ファイルに変換します。
+       エラーが発生した場合は、エラーメッセージを参照し、レシピファイルを修正してください。
+      </p>
+      <p class="type">
+       $ exerb hello_call.exy<br />
+      </p>
+     </div>
+     <h3><a name="0205">5.</a>実行ファイルの動作確認</h3>
+     <div class="h3">
+      <p>
+       生成された実行ファイルを実行します。
+       「Hello!」と表示されれば成功です。
+      </p>
+      <p class="type">
+       $ hello_call.exe<br />
+       Hello!<br />
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>

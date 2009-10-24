@@ -1,0 +1,87 @@
+
+#==============================================================================#
+# $Id: exerb.exy,v 1.3 2006/07/06 01:53:56 yuya Exp $
+#==============================================================================#
+
+general:
+  startup: exerb.rb
+  core: cui
+  kcode: none
+  output: ../exerb.exe
+
+path:
+  - ../lib
+
+file:
+  exerb.rb:
+    file: ../bin/exerb
+
+  exerb/archive.rb:
+  exerb/config.rb:
+  exerb/error.rb:
+  exerb/executable.rb:
+  exerb/file_table.rb:
+  exerb/mkexy.rb:
+  exerb/name_table.rb:
+  exerb/recipe.rb:
+  exerb/resource.rb:
+  exerb/resource_library.rb:
+  exerb/utility.rb:
+  exerb/utility2.rb:
+  exerb/version.rb:
+  exerb/resource/base.rb:
+  exerb/resource/binary.rb:
+  exerb/resource/dialog.rb:
+  exerb/resource/group_icon.rb:
+  exerb/resource/icon.rb:
+  exerb/resource/version_info.rb:
+  exerb/win32/icon_file.rb:
+  exerb/win32/pe_file.rb:
+  exerb/win32/resource_directory.rb:
+  exerb/win32/resource_directory_root.rb:
+  exerb/win32/resource_entry.rb:
+  exerb/win32/const/resource.rb:
+  exerb/win32/struct/base.rb:
+  exerb/win32/struct/icon_dir_entry.rb:
+  exerb/win32/struct/icon_header.rb:
+  exerb/win32/struct/icon_res_entry.rb:
+  exerb/win32/struct/image_dos_header.rb:
+  exerb/win32/struct/image_file_header.rb:
+  exerb/win32/struct/image_nt_headers32.rb:
+  exerb/win32/struct/image_optional_header32.rb:
+  exerb/win32/struct/image_resource_data_entry.rb:
+  exerb/win32/struct/image_resource_directory.rb:
+  exerb/win32/struct/image_resource_directory_entry.rb:
+  exerb/win32/struct/image_section_header.rb:
+  exerb/win32/struct/version_info_block.rb:
+  exerb/win32/struct/vs_fixed_file_info.rb:
+
+  yaml.rb:
+  yaml/baseemitter.rb:
+  yaml/basenode.rb:
+  yaml/constants.rb:
+  yaml/dbm.rb:
+  yaml/encoding.rb:
+  yaml/error.rb:
+  yaml/loader.rb:
+  yaml/rubytypes.rb:
+  yaml/store.rb:
+  yaml/stream.rb:
+  yaml/stringio.rb:
+  yaml/syck.rb:
+  yaml/tag.rb:
+  yaml/types.rb:
+  yaml/yamlnode.rb:
+  yaml/ypath.rb:
+
+  date.rb:
+  date/format.rb:
+  rational.rb:
+  getoptlong.rb:
+  rbconfig.rb:
+
+  syck.so:
+  stringio.so:
+
+#==============================================================================#
+#==============================================================================#

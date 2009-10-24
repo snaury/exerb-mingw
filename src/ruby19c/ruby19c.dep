@@ -1,0 +1,52 @@
+# Microsoft Developer Studio Generated Dependency File, included by ruby19c.mak
+
+..\exerb\cui.cpp : \
+	"..\libruby19\src\config.h"\
+	"..\libruby19\src\defines.h"\
+	"..\libruby19\src\intern.h"\
+	"..\libruby19\src\missing.h"\
+	"..\libruby19\src\ruby.h"\
+	"..\libruby19\src\win32\win32.h"\
+	
+
+..\exerb\exerb.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\module.h"\
+	"..\exerb\resource.h"\
+	"..\exerb\utility.h"\
+	"..\libruby19\src\config.h"\
+	"..\libruby19\src\defines.h"\
+	"..\libruby19\src\intern.h"\
+	"..\libruby19\src\missing.h"\
+	"..\libruby19\src\ruby.h"\
+	"..\libruby19\src\win32\win32.h"\
+	
+
+..\exerb\module.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\module.h"\
+	"..\exerb\utility.h"\
+	"..\libruby19\src\config.h"\
+	"..\libruby19\src\defines.h"\
+	"..\libruby19\src\intern.h"\
+	"..\libruby19\src\missing.h"\
+	"..\libruby19\src\ruby.h"\
+	"..\libruby19\src\win32\win32.h"\
+	
+
+..\exerb\resource.rc : \
+	"..\exerb\default.exa"\
+	"..\exerb\resource.h"\
+	"..\exerb\ruby.ico"\
+	
+
+..\exerb\utility.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\utility.h"\
+	"..\libruby19\src\config.h"\
+	"..\libruby19\src\defines.h"\
+	"..\libruby19\src\intern.h"\
+	"..\libruby19\src\missing.h"\
+	"..\libruby19\src\ruby.h"\
+	"..\libruby19\src\win32\win32.h"\
+	

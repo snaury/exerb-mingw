@@ -1,0 +1,75 @@
+
+#==============================================================================#
+# $Id: exerb-win32.exy,v 1.1 2005/04/17 14:03:02 yuya Exp $
+#==============================================================================#
+
+general:
+  startup: exerb-win32.rb
+  core: guirt
+  kcode: none
+  output: ../exerb-win32.exe
+
+path:
+  - ../lib
+  - c:/cygwin/usr/local/lib/ruby/1.8
+  - c:/cygwin/usr/local/lib/ruby/1.8/i386-mswin32
+
+file:
+  exerb-win32.rb:
+    file: exerb-win32/exerb-win32.rb
+
+  exerb/archive.rb:
+  exerb/config.rb:
+  exerb/error.rb:
+  exerb/executable.rb:
+  exerb/file_table.rb:
+  exerb/mkexr.rb:
+  exerb/name_table.rb:
+  exerb/plugin_table.rb:
+  exerb/recipe.rb:
+  exerb/resource.rb:
+  exerb/resource_library.rb:
+  exerb/utility.rb:
+  exerb/version.rb:
+  exerb/resource/base.rb:
+  exerb/resource/binary.rb:
+  exerb/resource/dialog.rb:
+  exerb/resource/group_icon.rb:
+  exerb/resource/icon.rb:
+  exerb/resource/version_info.rb:
+  exerb/win32/icon_file.rb:
+  exerb/win32/pe_file.rb:
+  exerb/win32/resource_directory.rb:
+  exerb/win32/resource_directory_root.rb:
+  exerb/win32/resource_entry.rb:
+  exerb/win32/const/resource.rb:
+  exerb/win32/struct/base.rb:
+  exerb/win32/struct/icon_dir_entry.rb:
+  exerb/win32/struct/icon_header.rb:
+  exerb/win32/struct/icon_res_entry.rb:
+  exerb/win32/struct/image_dos_header.rb:
+  exerb/win32/struct/image_file_header.rb:
+  exerb/win32/struct/image_nt_headers32.rb:
+  exerb/win32/struct/image_optional_header32.rb:
+  exerb/win32/struct/image_resource_data_entry.rb:
+  exerb/win32/struct/image_resource_directory.rb:
+  exerb/win32/struct/image_resource_directory_entry.rb:
+  exerb/win32/struct/image_section_header.rb:
+  exerb/win32/struct/version_info_block.rb:
+  exerb/win32/struct/vs_fixed_file_info.rb:
+
+  rbconfig.rb:
+  pstore.rb:
+  ftools.rb:
+
+  etklib.so:
+    type: extension-library
+  stringio.so:
+    type: extension-library
+  digest.so:
+    type: extension-library
+  digest/md5.so:
+    type: extension-library
+
+#==============================================================================#
+#==============================================================================#

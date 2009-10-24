@@ -1,0 +1,60 @@
+
+#==============================================================================#
+# $Id: vruby.exy,v 1.1 2006/07/06 01:35:22 yuya Exp $
+#==============================================================================#
+
+general:
+  startup: vruby.rb
+  core: gui
+  kcode: none
+
+path:
+  - ext
+
+file:
+  vruby.rb:
+  vr/compat/rubycompat.rb:
+  vr/compat/vrcomctl.rb:
+  vr/compat/vrcontrol.rb:
+  vr/compat/vrmmedia.rb:
+  vr/contrib/inifile.rb:
+  vr/contrib/msgboxconst.rb:
+  vr/contrib/toolbar.rb:
+  vr/contrib/vrctlcolor.rb:
+  vr/contrib/vrhotkey.rb:
+  vr/contrib/vrlistviewex.rb:
+  vr/contrib/vrstdscrollbar.rb:
+  vr/contrib/vrwincomponent.rb:
+  vr/clipboard.rb:
+  vr/dragdropformat.rb:
+  vr/rscutil.rb:
+  vr/sysmod.rb:
+  vr/vractivex.rb:
+  vr/vrclipboard.rb:
+  vr/vrcomctl.rb:
+  vr/vrcontrol.rb:
+  vr/vrdde.rb:
+  vr/vrddrop.rb:
+  vr/vrdialog.rb:
+  vr/vrhandler.rb:
+  vr/vrlayout.old.rb:
+  vr/vrlayout.rb:
+  vr/vrlayout2.rb:
+  vr/vrmargin.rb:
+  vr/vrmgdlayout.rb:
+  vr/vrmmedia.rb:
+  vr/vrolednd.rb:
+  vr/vrowndraw.rb:
+  vr/vrrichedit.rb:
+  vr/vrtimer.rb:
+  vr/vrtooltip.rb:
+  vr/vrtray.rb:
+  vr/vrtvitem.rb:
+  vr/vrtwopane.rb:
+  vr/vruby.rb:
+  vr/winconst.rb:
+  swin.so:
+  Win32API.so:
+
+#==============================================================================#
+#==============================================================================#

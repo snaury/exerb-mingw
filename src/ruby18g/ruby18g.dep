@@ -1,0 +1,54 @@
+# Microsoft Developer Studio Generated Dependency File, included by ruby18g.mak
+
+..\exerb\exerb.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\module.h"\
+	"..\exerb\resource.h"\
+	"..\exerb\utility.h"\
+	"..\libruby18\src\config.h"\
+	"..\libruby18\src\defines.h"\
+	"..\libruby18\src\intern.h"\
+	"..\libruby18\src\missing.h"\
+	"..\libruby18\src\ruby.h"\
+	"..\libruby18\src\win32\win32.h"\
+	
+
+..\exerb\gui.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\resource.h"\
+	"..\libruby18\src\config.h"\
+	"..\libruby18\src\defines.h"\
+	"..\libruby18\src\intern.h"\
+	"..\libruby18\src\missing.h"\
+	"..\libruby18\src\ruby.h"\
+	"..\libruby18\src\win32\win32.h"\
+	
+
+..\exerb\module.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\module.h"\
+	"..\exerb\utility.h"\
+	"..\libruby18\src\config.h"\
+	"..\libruby18\src\defines.h"\
+	"..\libruby18\src\intern.h"\
+	"..\libruby18\src\missing.h"\
+	"..\libruby18\src\ruby.h"\
+	"..\libruby18\src\win32\win32.h"\
+	
+
+..\exerb\resource.rc : \
+	"..\exerb\default.exa"\
+	"..\exerb\resource.h"\
+	"..\exerb\ruby.ico"\
+	
+
+..\exerb\utility.cpp : \
+	"..\exerb\exerb.h"\
+	"..\exerb\utility.h"\
+	"..\libruby18\src\config.h"\
+	"..\libruby18\src\defines.h"\
+	"..\libruby18\src\intern.h"\
+	"..\libruby18\src\missing.h"\
+	"..\libruby18\src\ruby.h"\
+	"..\libruby18\src\win32\win32.h"\
+	

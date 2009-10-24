@@ -1,0 +1,187 @@
+
+/* $Id: style.css,v 1.8 2006/05/31 01:40:35 yuya Exp $ */
+
+body
+{
+	margin						: 0em;
+	padding						: 0.75em;
+	color						: #000000;
+	background-color			: #F0F0F0;
+}
+
+em
+{
+	font-weight					: bold;
+	font-style					: normal;
+	text-decoration				: none;
+}
+
+div.logo
+{
+	margin						: 0em;
+	padding						: 0em;
+	font-size					: 10%;
+	color						: #F0F0F0;
+	background-image			: url(logo.gif);
+	background-repeat			: no-repeat;
+	background-position			: right top;
+	height						: 55px;
+}
+
+div.navi
+{
+	margin						: 0em;
+	padding						: 0.2em;
+	color						: #333333;
+	background-color			: #CECECE;
+	font-size					: 90%;
+	font-weight					: normal;
+	text-align					: left;
+	background-image			: url(navi.gif);
+	background-repeat			: repeat-y;
+	background-position			: right top;
+}
+div.navi em
+{
+}
+
+div.footer
+{
+	margin						: 0em;
+	padding						: 0.2em;
+	color						: #333333;
+	background-color			: #E0E0E0;
+	font-size					: 90%;
+	font-weight					: bold;
+	text-align					: right;
+}
+
+div.body
+{
+	margin						: 0em;
+	padding						: 1em;
+	background-color			: #FFFFFF;
+}
+div.body em
+{
+	color						: #CC0000;
+}
+
+h1
+{
+	margin						: 0em;
+	padding						: 0.5em;
+	font-size					: 180%;
+	font-weight					: normal;
+	text-align					: center;
+}
+div.h1
+{
+	margin						: 0em;
+	padding						: 0em;
+}
+
+h2
+{
+	color						: #000000;
+	margin						: 0.1em 0em 0.1em 0em;
+	padding						: 0.2em 0.4em 0.2em 0.4em;
+	font-size					: 150%;
+	font-weight					: bold;
+	border-style				: solid;
+	border-width				: 2px 0px 2px 0px;
+	border-color				: #000;
+}
+h2 a
+{
+	color						: #FFF;
+	background-color			: #000;
+	margin						: 0em 0.3em 0em 0em;
+	padding						: 0em 0.2em 0em 0.2em;
+	font-style					: normal;
+	text-decoration				: none;
+}
+div.h2
+{
+	margin						: 0em;
+	padding						: 0.6em 0em 0.6em 2em;
+}
+
+h3
+{
+	color						: #000000;
+	margin						: 0em 0em 0em 0em;
+	padding						: 0.1em 0em 0.1em 0em;
+	font-size					: 120%;
+	font-weight					: bold;
+	border-style				: solid;
+	border-width				: 1px 0px 1px 1px;
+	border-color				: #000;
+}
+h3 a
+{
+	color						: #FFFFFF;
+	background-color			: #000000;
+	margin						: 0em 0.2em 0em 0em;
+	padding						: 0.1em 0.2em 0.1em 0.2em;
+}
+div.h3
+{
+	margin						: 0em;
+	padding						: 0.4em 0em 0.4em 1em;
+}
+
+p
+{
+	text-indent					: 0.5em;
+	margin						: 1em 0em;
+	padding						: 0em;
+}
+p.type
+{
+	color						: #000000;
+	background-color			: #F0F0F0;
+	margin						: 1em 0em;
+	padding						: 0.5em;
+	font-family					: monospace;
+	text-indent					: 0em;
+	border-style				: solid;
+	border-width				: 1px;
+	border-color				: #000000;
+}
+p.recipe
+{
+	color						: #000000;
+	background-color			: #F0F0F0;
+	margin						: 1em 0em;
+	padding						: 0.5em;
+	font-family					: monospace;
+	text-indent					: 0em;
+	border-style				: solid;
+	border-width				: 1px;
+	border-color				: #000000;
+}
+
+table
+{
+	border-collapse				: collapse;
+}
+
+table th
+{
+	color						: #FFFFFF;
+	background-color			: #000000;
+	border-color				: #000000;
+	border-width				: 1px;
+	border-style				: solid;
+	padding						: 0.3em 0.5em;
+	white-space					: nowrap;
+}
+
+table td
+{
+	border-color				: #000000;
+	border-width				: 1px;
+	border-style				: solid;
+	padding						: 0.3em 0.5em;
+}

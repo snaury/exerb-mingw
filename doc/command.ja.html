@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- $Id: command.ja.html,v 1.7 2006/05/26 01:09:48 yuya Exp $ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+ <head>
+  <title>Exerb - コマンドリファレンス</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+ </head>
+ <body>
+  <div class="logo">Exerb Project</div>
+  <div class="navi"><a href="../README.ja.html">ようこそ</a> &gt; <em>コマンドリファレンス</em></div>
+  <div class="body">
+   <h1>コマンドリファレンス</h1>
+   <div class="h1">
+    <h2>目次</h2>
+    <div class="h2">
+     <ol>
+      <li><a href="#01">概要</a></li>
+      <li>
+       <a href="#02">exerbコマンド</a>
+       <ol>
+        <li><a href="#0201">パラメータ</a></li>
+        <li><a href="#0202">オプション</a></li>
+       </ol>
+      </li>
+      <li>
+       <a href="#03">mkexyコマンド</a>
+       <ol>
+        <li><a href="#0301">パラメータ</a></li>
+        <li><a href="#0302">オプション</a></li>
+       </ol>
+      </li>
+     </ol>
+    </div>
+    <h2><a name="01">1.</a>概要</h2>
+    <div class="h2">
+     <p>
+      Exerbには2つのコマンドが含まれています。
+      実行ファイルを生成するexerbコマンドと、レシピファイルを生成するmkexyコマンドです。
+     </p>
+    </div>
+    <h2><a name="02">2.</a>exerbコマンド</h2>
+    <div class="h2">
+     <p>Rubyスクリプトファイル、またはレシピファイルを指定して、実行ファイルを生成します。</p>
+     <p class="type">exerb [オプション] {Rubyスクリプトファイル|レシピファイル}</p>
+     <h3><a name="0201">1.</a>パラメータ</h3>
+     <div class="h3">
+      <p>
+       Rubyスクリプト、またはレシピファイルのファイル名を指定します。
+       複数のファイル名を指定することはできません。
+       ファイル名の拡張子が&quot;rb&quot;の場合はRubyスクリプトファイルとして、それ以外の場合にはレシピファイルとして処理されます。
+      </p>
+      <p>
+       Rubyスクリプトファイルが指定された場合、そのRubyスクリプトのみを含む実行ファイルが生成されます。
+       単一のRubyスクリプトで構成されているシンプルなソフトウェアを、実行ファイルに変換する場合に使用します。
+      </p>
+      <p>
+       レシピファイルが指定された場合、そのレシピに含まれている情報に従って実行ファイルが生成されます。
+       複数のRubyスクリプト、拡張ライブラリで構成されているソフトウェアを、実行ファイルに変換する場合に使用します。
+       レシピファイルのフォーマットについては『<a href="recipe.ja.html">レシピリファレンス</a>』を参照してください。
+      </p>
+     </div>
+     <h3><a name="0202">2.</a>オプション</h3>
+     <div class="h3">
+      <p>
+       下記のオプションを指定することができます。
+       コマンドオプションとレシピファイルで同一項目が指定された場合、コマンドオプションが優先されます。
+      </p>
+      <table>
+       <tr><th colspan="2">オプション</th><th>説明</th></tr>
+       <tr><td>-c</td><td>--corename</td><td>定義された名称でコアを指定します。-Cオプションと同時に指定された場合、-Cオプションが優先されます。</td></tr>
+       <tr><td>-C</td><td>--corefile</td><td>ファイルパスでコアを指定します。-cオプションと同時に指定された場合、-Cオプションが優先されます。</td></tr>
+       <tr><td>-o</td><td>--outfile</td><td>出力ファイル名を指定します。</td></tr>
+       <tr><td>-k</td><td>--kcode</td><td>文字コードを指定します。none、euc、sjis、utf8のいずれかを指定してください。</td></tr>
+       <tr><td>-a</td><td>--archive</td><td>アーカイブのみ生成します。実行ファイルは生成されません。</td></tr>
+       <tr><td>-v</td><td>--verbose</td><td>冗長な情報を表示します。</td></tr>
+       <tr><td>-e</td><td>--execute</td><td>生成した実行ファイルを実行します。</td></tr>
+       <tr><td>-i</td><td>--config</td><td>各種設定内容を表示します。</td></tr>
+       <tr><td>-V</td><td>--version</td><td>バージョン情報を表示します。</td></tr>
+       <tr><td>-h</td><td>--help</td><td>ヘルプメッセージを表示します。</td></tr>
+      </table>
+     </div>
+    </div>
+    <h2><a name="03">3.</a>mkexyコマンド</h2>
+    <div class="h2">
+     <p>
+      Rubyスクリプトを実行して、レシピファイルを自動的に生成します。
+      下記のいずれかの方法で起動してください。
+     </p>
+     <p class="type">mkexy [オプション] Rubyスクリプトファイル [パラメータ]</p>
+     <p class="type">ruby -r exerb/mkexy [オプション] Rubyスクリプトファイル [パラメータ]</p>
+     <h3><a name="0301">1.</a>パラメータ</h3>
+     <div class="h3">
+      <p>
+       「Rubyスクリプトファイル」には、レシピファイル生成対象であるRubyスクリプトを指定します。
+       指定されたRubyスクリプトが実行され、終了時にレシピファイルが生成されます。
+      </p>
+      <p>「パラメータ」には、レシピファイル生成対象のRubyスクリプトに渡す引数を指定します。</p>
+     </div>
+     <h3><a name="0302">2.</a>オプション</h3>
+     <div class="h3">
+      <p>そのままrubyコマンドへのオプションとなります。</p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="footer">Copyright(C) 2001-2006 All rights reserved.</div>
+ </body>
+</html>
