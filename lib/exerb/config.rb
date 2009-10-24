@@ -8,6 +8,7 @@ require 'rbconfig'
 #==============================================================================#
 
 module Exerb
+  ver = RUBY_VERSION.gsub('.','')
 
   # Search directories of a core.
   # If running exerb on exerb, Add self path to the search directories of a core.
@@ -20,24 +21,20 @@ module Exerb
 
   # Name definitions of a core.
   CORE_NAME = {
-    'cui'    => 'ruby187c.exc',
-    'cuid'   => 'ruby187cd.exc',
-    'cuirt'  => 'ruby187crt.exc',
-    'cuirtd' => 'ruby187crtd.exc',
-    'gui'    => 'ruby187g.exc',
-    'guid'   => 'ruby187gd.exc',
-    'guirt'  => 'ruby187grt.exc',
-    'guirtd' => 'ruby187grtd.exc',
-    'cui19'  => 'ruby190c.exc',
-    'gui19'  => 'ruby190g.exc',
-    'cui20'  => 'ruby200c.exc',
-    'gui20'  => 'ruby200g.exc',
+    'cui'    => "ruby#{ver}c.exc",
+    'cuid'   => "ruby#{ver}cd.exc",
+    'cuirt'  => "ruby#{ver}crt.exc",
+    'cuirtd' => "ruby#{ver}crtd.exc",
+    'gui'    => "ruby#{ver}g.exc",
+    'guid'   => "ruby#{ver}gd.exc",
+    'guirt'  => "ruby#{ver}grt.exc",
+    'guirtd' => "ruby#{ver}grtd.exc",
   }
 
   # Descriptions of a core.
   CORE_DESC = {
     # FIXME: Add descriptions
-    # 'ruby187c.exc' => '...',
+    # "ruby#{ver}c.exc" => '...',
   }
 
 end # Exerb

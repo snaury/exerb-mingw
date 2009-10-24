@@ -25,7 +25,8 @@ module ExerbTestCase
   end
 
   def create_exe(name, exename = name)
-    corefile   = '../data/exerb/ruby187c.exc'
+    ver        = RUBY_VERSION.gsub('.','')
+    corefile   = "../data/exerb/ruby#{ver}c.exc"
     recipe     = Exerb::Recipe.load("#{name}/#{exename}.exy")
     archive    = recipe.create_archive()
     executable = Exerb::Executable.read(corefile)
