@@ -15,7 +15,7 @@ class ExitCodeTestCase < Test::Unit::TestCase
   end
 
   def test_exitcode
-    if RUBY_PLATFORM.include?('mswin32')
+    if /mswin|mingw/ =~ RUBY_PLATFORM
       assert_equal("10\n", execute_cmd("#{@name}\\#{@name}.exe || if errorlevel 10 echo 10"))
     else
       assert_equal("10\n", execute_cmd("#{@name}/#{@name}.exe || echo $?"))
