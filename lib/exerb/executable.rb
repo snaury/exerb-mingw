@@ -45,7 +45,7 @@ class Exerb::Executable
     @core[rsh.pointer_to_raw_data, rsh.size_of_raw_data] = aligned_rsrc
 
     fh.time_date_stamp                 = Time.now.to_i
-    oh.size_of_initialized_data        = oh.size_of_initialized_data - old_resource_size + new_resource_size
+    oh.size_of_initialized_data        = oh.size_of_initialized_data - rsh.size_of_raw_data + aligned_rsrc.size
     oh.size_of_image                   = oh.size_of_image            - old_resource_size + new_resource_size
     oh.resource_directory_virtual_size = packed_rsrc.size
     rsh.virtual_size                   = packed_rsrc.size
