@@ -276,6 +276,7 @@ rb_define_variable
 rb_define_virtual_variable
 rb_detach_process
 rb_disable_super
+rb_during_gc
 rb_dvar_curr
 rb_dvar_defined
 rb_dvar_push
@@ -323,6 +324,7 @@ rb_eval_string
 rb_eval_string_protect
 rb_eval_string_wrap
 rb_exc_fatal
+rb_exc_jump
 rb_exc_new
 rb_exc_new2
 rb_exc_new3
@@ -714,9 +716,11 @@ rb_thread_local_aset
 rb_thread_main
 rb_thread_pending
 rb_thread_polling
+rb_thread_reset_raised
 rb_thread_run
 rb_thread_schedule
 rb_thread_select
+rb_thread_set_raised
 rb_thread_signal_exit
 rb_thread_signal_raise
 rb_thread_sleep

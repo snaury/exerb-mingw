@@ -1,8 +1,12 @@
 =begin
 
-$Id: ChangeLog.ja.rd,v 1.146 2008/07/01 15:39:53 arton Exp $
+$Id: ChangeLog.ja.rd,v 1.147 2008/08/11 15:54:01 arton Exp $
 
 = Exerb - ChangeLog
+
+== 4.8.0
+
+* ˆÀ’è”ÅƒRƒA‚ğRuby 1.8.7-p72‚É•ÏX
 
 == 4.7.0
 
