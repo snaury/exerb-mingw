@@ -146,6 +146,7 @@ rb_big_or
 rb_big_plus
 rb_big_pow
 rb_big_rand
+rb_big_rshift
 rb_big_xor
 rb_block_given_p
 rb_block_proc
@@ -186,6 +187,7 @@ rb_call_inits
 rb_call_super
 rb_catch
 rb_check_array_type
+rb_check_backtrace
 rb_check_convert_type
 rb_check_frozen
 rb_check_inheritable
