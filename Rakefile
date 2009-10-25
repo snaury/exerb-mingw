@@ -1,25 +1,19 @@
 require 'rbconfig'
+require 'ostruct'
+require 'generator'
 
-ver = RUBY_VERSION.gsub('.','')
-exerb_dll_base = "exerb50"
-
-file_eval_exerb_o   = "tmp/eval_exerb.o"
-file_resource_dll_o = "tmp/resource_dll.o"
-file_resource_cui_o = "tmp/resource_cui.o"
-file_resource_gui_o = "tmp/resource_gui.o"
-file_exerb_def      = "tmp/#{exerb_dll_base}.def"
-file_exerb_lib      = "tmp/#{exerb_dll_base}.dll.a"
-file_exerb_rt_def   = "tmp/#{exerb_dll_base}_rt.def"
-file_exerb_dll      = "data/exerb/#{exerb_dll_base}.dll"
-file_ruby_cui       = "data/exerb/ruby#{ver}c.exc"
-file_ruby_cui_rt    = "data/exerb/ruby#{ver}crt.exc"
-file_ruby_gui       = "data/exerb/ruby#{ver}g.exc"
-file_ruby_gui_rt    = "data/exerb/ruby#{ver}grt.exc"
-
-lib_sources = Dir["src/exerb/{exerb,module,utility}.cpp"] + [file_eval_exerb_o]
-dll_sources = [file_resource_dll_o]
-cui_sources = ["src/exerb/cui.cpp", file_resource_cui_o]
-gui_sources = ["src/exerb/gui.cpp", file_resource_gui_o]
+RUBY_SRC_DIR = nil
+C = OpenStruct.new
+c = RbConfig::CONFIG
+C.cc = "#{c['CC'] || 'gcc'}"
+C.cflags = "#{c['CFLAGS'] || '-Os'}"
+C.xcflags = "#{c['XCFLAGS'] || '-DRUBY_EXPORT'}"
+C.cppflags = "#{c['CPPFLAGS']}"
+C.incflags = "-Isrc/mingw -I#{c['archdir']}"
+C.ldflags = "-L#{c['libdir']}"
+C.xldflags = "#{c['XLDFLAGS'] || '-Wl,--stack,0x02000000'}"
+C.rubylib = "#{c['LIBRUBYARG_STATIC']}"
+C.libs = "#{c['LIBS']} -lstdc++"
 
 def make_resource(target, source, type)
   file target => source do
@@ -48,27 +42,36 @@ def patch_ruby_eval(target, source)
 end
 
 def compile_c(target, source)
-  c = RbConfig::CONFIG
-  cmdline = "#{c['CC']} #{c['CFLAGS']} #{c['XCFLAGS']} #{c['CPPFLAGS']} -I. -I#{c['archdir']} -c -o #{target} #{source}"
+  cmdline = "#{C.cc} #{C.cflags} #{C.xcflags} #{C.cppflags} #{C.incflags} -c -o #{target} #{source}"
   file target => source do
     mkdir_p File.dirname(target)
     sh cmdline
   end
 end
 
+def make_archive(target, sources)
+  file target => sources do
+    mkdir_p File.dirname(target)
+    rm_f target
+    sources.each do |source|
+      sh "ar q #{target} #{source}"
+    end
+  end
+end
+
 def link_cpp(target, options)
-  c = RbConfig::CONFIG
   sources = options[:sources]
-  cflags = "#{c['CFLAGS']} #{c['XCFLAGS']} #{c['CPPFLAGS']} -Isrc/mingw -I#{c['archdir']}"
-  ldflags = "-L#{c['libdir']}"
+  cc = C.cc
+  cflags = "#{C.cflags} #{C.xcflags} #{C.cppflags} #{C.incflags}"
+  ldflags = "#{C.ldflags} #{C.xldflags}"
   dllflags = options[:isdll] ? "-shared" : ""
   guiflags = options[:gui] ? "-mwindows" : ""
   dldflags = options[:isdll] ? "-Wl,--enable-auto-image-base,--enable-auto-import,--export-all" : ""
   impflags = options[:implib] ? "-Wl,--out-implib=#{options[:implib]}" : ""
   defflags = options[:def] ? "-Wl,--output-def=#{options[:def]}" : ""
-  rubylib = (options[:rubylib] || c['LIBRUBYARG_STATIC'])
-  libs = "#{c['LIBS']} -lstdc++"
-  cmdline = "#{c['CC']} #{cflags} #{ldflags} #{dllflags} #{guiflags} #{dldflags} #{impflags} #{defflags} -s -o #{target} #{sources.join(' ')} #{rubylib} #{libs}"
+  rubylib = (options[:rubylib] || C.rubylib)
+  libs = C.libs
+  cmdline = "#{cc} #{cflags} #{ldflags} #{dllflags} #{guiflags} #{dldflags} #{impflags} #{defflags} -s -o #{target} #{sources.join(' ')} #{rubylib} #{libs}"
   file target => sources do
     mkdir_p File.dirname(options[:implib]) if options[:implib]
     mkdir_p File.dirname(options[:def]) if options[:def]
@@ -98,8 +101,61 @@ def make_def_proxy(target, source, proxy)
   end
 end
 
-patch_ruby_eval "src/mingw#{ver}/eval_exerb.c", "src/mingw#{ver}/eval.c"
-compile_c file_eval_exerb_o, "src/mingw#{ver}/eval_exerb.c"
+ver = RUBY_VERSION.gsub('.','')
+exerb_dll_base = "exerb50"
+
+file_resource_dll_o = "tmp/resource_dll.o"
+file_resource_cui_o = "tmp/resource_cui.o"
+file_resource_gui_o = "tmp/resource_gui.o"
+file_exerb_def      = "tmp/#{exerb_dll_base}.def"
+file_exerb_lib      = "tmp/#{exerb_dll_base}.dll.a"
+file_exerb_rt_def   = "tmp/#{exerb_dll_base}_rt.def"
+file_exerb_dll      = "data/exerb/#{exerb_dll_base}.dll"
+file_ruby_cui       = "data/exerb/ruby#{ver}c.exc"
+file_ruby_cui_rt    = "data/exerb/ruby#{ver}crt.exc"
+file_ruby_gui       = "data/exerb/ruby#{ver}g.exc"
+file_ruby_gui_rt    = "data/exerb/ruby#{ver}grt.exc"
+file_eval_c         = "src/mingw#{ver}/eval.c"
+file_eval_exerb_c   = "tmp/eval_exerb.c"
+file_eval_exerb_o   = "tmp/eval_exerb.o"
+ruby_src            = [file_eval_exerb_c]
+ruby_obj            = [file_eval_exerb_o]
+ruby_lib            = nil
+
+if RUBY_SRC_DIR
+  C.cflags = "-Os" # optimize for size
+  C.incflags = "#{C.incflags} -I#{RUBY_SRC_DIR}"
+  C.rubylib = ""
+  file_eval_c = "#{RUBY_SRC_DIR}/eval.c"
+  ruby_src = []
+  Dir["#{RUBY_SRC_DIR}/*.c"].each do |filename|
+    next if filename =~ /lex\.c/i
+    next if filename =~ /eval\.c/i
+    next if filename =~ /main\.c/i
+    ruby_src << filename
+  end
+  Dir["#{RUBY_SRC_DIR}/win32/*.c"].each do |filename|
+    next if filename =~ /winmain\.c/i
+    ruby_src << filename
+  end
+  ["fileblocks.c", "crypt.c", "flock.c"].each do |name|
+    ruby_src << "#{RUBY_SRC_DIR}/missing/#{name}"
+  end
+  ruby_src << file_eval_exerb_c
+  ruby_obj = ruby_src.map { |filename| filename.sub(RUBY_SRC_DIR, 'tmp').gsub(/\.c\Z/i, '.o') }
+  ruby_lib = "tmp/libruby#{ver}.a"
+  make_archive ruby_lib, ruby_obj
+end
+
+lib_sources = Dir["src/exerb/{exerb,module,utility}.cpp"] + (ruby_lib ? [ruby_lib] : ruby_obj)
+dll_sources = [file_resource_dll_o]
+cui_sources = ["src/exerb/cui.cpp", file_resource_cui_o]
+gui_sources = ["src/exerb/gui.cpp", file_resource_gui_o]
+
+patch_ruby_eval file_eval_exerb_c, file_eval_c
+SyncEnumerator.new(ruby_obj, ruby_src).each do |target, source|
+  compile_c target, source
+end
 
 make_resource file_resource_dll_o, "src/exerb/resource.rc", "RUNTIME"
 link_cpp file_exerb_dll, :sources => (dll_sources + lib_sources), :isdll => true, :def => file_exerb_def, :implib => file_exerb_lib
