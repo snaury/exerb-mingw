@@ -22,7 +22,7 @@ def make_resource(target, source, type)
   end
 end
 
-def patch_ruby_eval(target, source)
+def patch_rb_require(target, source)
   file target => source do
     mkdir_p File.dirname(target)
     File.open(target, 'w') do |dst|
@@ -104,34 +104,39 @@ end
 ver = RUBY_VERSION.gsub('.','')
 exerb_dll_base = "exerb50"
 
-file_resource_dll_o = "tmp/resource_dll.o"
-file_resource_cui_o = "tmp/resource_cui.o"
-file_resource_gui_o = "tmp/resource_gui.o"
-file_exerb_def      = "tmp/#{exerb_dll_base}.def"
-file_exerb_lib      = "tmp/#{exerb_dll_base}.dll.a"
-file_exerb_rt_def   = "tmp/#{exerb_dll_base}_rt.def"
-file_exerb_dll      = "data/exerb/#{exerb_dll_base}.dll"
-file_ruby_cui       = "data/exerb/ruby#{ver}c.exc"
-file_ruby_cui_rt    = "data/exerb/ruby#{ver}crt.exc"
-file_ruby_gui       = "data/exerb/ruby#{ver}g.exc"
-file_ruby_gui_rt    = "data/exerb/ruby#{ver}grt.exc"
-file_eval_c         = "src/mingw#{ver}/eval.c"
-file_eval_exerb_c   = "tmp/eval_exerb.c"
-file_eval_exerb_o   = "tmp/eval_exerb.o"
-ruby_src            = [file_eval_exerb_c]
-ruby_obj            = [file_eval_exerb_o]
-ruby_lib            = nil
+file_resource_dll_o   = "tmp/resource_dll.o"
+file_resource_cui_o   = "tmp/resource_cui.o"
+file_resource_gui_o   = "tmp/resource_gui.o"
+file_exerb_def        = "tmp/#{exerb_dll_base}.def"
+file_exerb_lib        = "tmp/#{exerb_dll_base}.dll.a"
+file_exerb_rt_def     = "tmp/#{exerb_dll_base}_rt.def"
+file_exerb_dll        = "data/exerb/#{exerb_dll_base}.dll"
+file_ruby_cui         = "data/exerb/ruby#{ver}c.exc"
+file_ruby_cui_rt      = "data/exerb/ruby#{ver}crt.exc"
+file_ruby_gui         = "data/exerb/ruby#{ver}g.exc"
+file_ruby_gui_rt      = "data/exerb/ruby#{ver}grt.exc"
+file_eval_c           = "src/mingw#{ver}/eval.c"
+file_eval_exerb_c     = "tmp/eval_exerb.c"
+file_eval_exerb_o     = "tmp/eval_exerb.o"
+file_variable_c       = "src/mingw#{ver}/variable.c"
+file_variable_exerb_c = "tmp/variable_exerb.c"
+file_variable_exerb_o = "tmp/variable_exerb.o"
+ruby_src              = [file_eval_exerb_c, file_variable_exerb_c]
+ruby_obj              = [file_eval_exerb_o, file_variable_exerb_o]
+ruby_lib              = nil
 
 if RUBY_SRC_DIR
   C.cflags = "-Os" # optimize for size
   C.incflags = "#{C.incflags} -I#{RUBY_SRC_DIR}"
   C.rubylib = ""
   file_eval_c = "#{RUBY_SRC_DIR}/eval.c"
+  file_variable_c = "#{RUBY_SRC_DIR}/variable.c"
   ruby_src = []
   Dir["#{RUBY_SRC_DIR}/*.c"].each do |filename|
     next if filename =~ /lex\.c/i
     next if filename =~ /eval\.c/i
     next if filename =~ /main\.c/i
+    next if filename =~ /variable\.c/i
     ruby_src << filename
   end
   Dir["#{RUBY_SRC_DIR}/win32/*.c"].each do |filename|
@@ -142,6 +147,7 @@ if RUBY_SRC_DIR
     ruby_src << "#{RUBY_SRC_DIR}/missing/#{name}"
   end
   ruby_src << file_eval_exerb_c
+  ruby_src << file_variable_exerb_c
   ruby_obj = ruby_src.map { |filename| filename.sub(RUBY_SRC_DIR, 'tmp').gsub(/\.c\Z/i, '.o') }
   ruby_lib = "tmp/libruby#{ver}.a"
   make_archive ruby_lib, ruby_obj
@@ -152,7 +158,8 @@ dll_sources = [file_resource_dll_o]
 cui_sources = ["src/exerb/cui.cpp", file_resource_cui_o]
 gui_sources = ["src/exerb/gui.cpp", file_resource_gui_o]
 
-patch_ruby_eval file_eval_exerb_c, file_eval_c
+patch_rb_require file_eval_exerb_c, file_eval_c
+patch_rb_require file_variable_exerb_c, file_variable_c
 SyncEnumerator.new(ruby_obj, ruby_src).each do |target, source|
   compile_c target, source
 end
