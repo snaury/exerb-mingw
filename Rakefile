@@ -1,5 +1,6 @@
 require 'rbconfig'
 require 'ostruct'
+require 'rake/clean'
 
 SUPPORTED_VERSIONS = {
   "1.8.6" => 383,
@@ -263,3 +264,6 @@ task :default => file_ruby_cui
 task :default => file_ruby_cui_rt
 task :default => file_ruby_gui
 task :default => file_ruby_gui_rt
+
+CLEAN.include('tmp')
+CLOBBER.include('data')
