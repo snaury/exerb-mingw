@@ -3,6 +3,7 @@
 #include <ruby.h>
 #include <crtdbg.h>
 
+#include "vpak.h"
 #include "exerb.h"
 #include "module.h"
 #include "utility.h"
@@ -96,12 +97,13 @@ static FARPROC WINAPI exerb_hook_get_proc_address(HMODULE module, LPCTSTR procna
 int
 exerb_main(int argc, char** argv, void (*on_init)(VALUE, VALUE, VALUE), void (*on_fail)(VALUE))
 {
+	::vpak_initialize();
 	::NtInitialize(&argc, &argv);
 	::ruby_init();
 	argc = ::rb_w32_cmdvector(::GetCommandLine(), &argv);
 	::ruby_set_argv(argc - 1, argv + 1);
 	::exerb_set_script_name("exerb");
-	::rb_ary_push(rb_load_path, ::rb_str_new2("."));
+	::rb_ary_push(rb_load_path, ::rb_str_new2("@:"));
 
 	int state = 0, result_code = 0;
 	::rb_protect(exerb_main_in_protect, UINT2NUM((DWORD)on_init), &state);

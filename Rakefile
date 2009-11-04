@@ -9,8 +9,8 @@ SUPPORTED_VERSIONS = {
 }
 
 NEEDS_PATCHING = {
-  "1.8.6" => ["eval.c", "variable.c"],
-  "1.8.7" => ["eval.c", "variable.c"],
+  "1.8.6" => [], #["eval.c", "variable.c"],
+  "1.8.7" => [], #["eval.c", "variable.c"],
   #"1.9.1" => ["encoding.c", "load.c", "variable.c"],
 }
 
@@ -231,7 +231,7 @@ ruby_src_patched = ruby_src_unpatched.map { |name| "tmp/patched/#{File.basename(
 ruby_src += ruby_src_patched
 ruby_obj = ruby_src.map { |name| "tmp/#{File.basename(name).gsub(/\.c\Z/i, '.o')}" }
 
-lib_sources = Dir["src/exerb/{exerb,module,utility}.cpp"] + (ruby_lib ? [ruby_lib] : ruby_obj)
+lib_sources = Dir["src/exerb/{exerb,module,utility}.cpp"] + ["src/exerb/vpak.c"] + (ruby_lib ? [ruby_lib] : ruby_obj)
 dll_sources = [file_resource_dll_o]
 cui_sources = ["src/exerb/cui.cpp", file_resource_cui_o]
 gui_sources = ["src/exerb/gui.cpp", file_resource_gui_o]
